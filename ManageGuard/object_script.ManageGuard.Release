@@ -1,0 +1,20 @@
+INPUT(
+./release\MainWindow.o
+./release\main.o
+./release\TMember.o
+./release\TGuard.o
+./release\Caserne.o
+./release\Member.o
+./release\Guard.o
+./release\CaserneEditWindow.o
+<<<<<<< HEAD
+./release\TCaserne.o
+=======
+./release\StaffEditWindow.o
+./release\SubWidget.o
+>>>>>>> b41f2fdd2ea5d3680eb96207fb086fcbf5f667be
+./release\moc_MainWindow.o
+./release\moc_CaserneEditWindow.o
+./release\moc_StaffEditWindow.o
+./release\moc_SubWidget.o
+);
