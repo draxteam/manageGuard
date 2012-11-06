@@ -57,14 +57,15 @@ void StaffEditWindow::openCreate()
     w_flMainStaffWindow->addRow("Prénom du personnel", w_leStaffSecName);
     w_flMainStaffWindow->addRow("Grade du personnel", w_cbStaffGrade);
     w_flMainStaffWindow->addRow("Assignation du personnel", w_hlAssignStaffWindow);
-    w_flMainStaffWindow->addRow(w_vlAssignRow);
-    w_flMainStaffWindow->addRow(w_hlButtonStaffWindow);
+ //   w_flMainStaffWindow->addRow(w_vlAssignRow);
+ //   w_flMainStaffWindow->addRow(w_hlButtonStaffWindow);
 
     setLayout(w_flMainStaffWindow);
     this->exec();
 }
 
 // Slots
+/*
 void StaffEditWindow::sl_addRowAssign()
 {
     ++a_nbItem;
@@ -86,6 +87,8 @@ void StaffEditWindow::sl_addRowAssign()
 void StaffEditWindow::sl_delRowAssign()
 {
 }
+
+*/
 
 
 

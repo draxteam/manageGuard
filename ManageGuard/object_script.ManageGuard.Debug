@@ -6,15 +6,12 @@ INPUT(
 ./debug\Caserne.o
 ./debug\Member.o
 ./debug\Guard.o
+./debug\CreateStaffWindow.o
 ./debug\CaserneEditWindow.o
-<<<<<<< HEAD
 ./debug\TCaserne.o
-=======
+./debug\CaserneEditWindow.o
 ./debug\StaffEditWindow.o
-./debug\SubWidget.o
->>>>>>> b41f2fdd2ea5d3680eb96207fb086fcbf5f667be
 ./debug\moc_MainWindow.o
 ./debug\moc_CaserneEditWindow.o
 ./debug\moc_StaffEditWindow.o
-./debug\moc_SubWidget.o
 );

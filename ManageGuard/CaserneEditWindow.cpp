@@ -4,15 +4,7 @@ CaserneEditWindow::CaserneEditWindow()
 {
     m_addStyleSheets();
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-    m_compterFicher();
-=======
     m_chargementCasernes();
->>>>>>> Stashed changes
-=======
-   // m_compterFicher();
->>>>>>> chargement_casernes
 }
 
 // Création des fenêtres
