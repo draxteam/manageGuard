@@ -6,7 +6,6 @@ INPUT(
 ./debug\Caserne.o
 ./debug\Member.o
 ./debug\Guard.o
-./debug\CreateStaffWindow.o
 ./debug\CaserneEditWindow.o
 ./debug\TCaserne.o
 ./debug\CaserneEditWindow.o

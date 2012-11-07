@@ -6,7 +6,6 @@ INPUT(
 ./release\Caserne.o
 ./release\Member.o
 ./release\Guard.o
-./release\CreateStaffWindow.o
 ./release\CaserneEditWindow.o
 ./release\TCaserne.o
 ./release\CaserneEditWindow.o
