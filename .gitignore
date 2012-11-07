@@ -4,3 +4,5 @@ ManageGuard/ManageGuard.pro.user
 ManageGuard/Makefile
 ManageGuard/Makefile.Debug
 ManageGuard/Makefile.Release
+ManageGuard/object_script.ManageGuard.Debug
+ManageGuard/object_script.ManageGuard.Release
