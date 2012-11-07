@@ -5,11 +5,10 @@ HEADERS += \
     Caserne.h \
     Member.h \
     Guard.h \
-    CreateStaffWindow.h \
     CaserneEditWindow.h \
     TCaserne.h \
-    CaserneEditWindow.h \
     StaffEditWindow.h \
+    includes/SubWidget.h
 
 SOURCES += \
     MainWindow.cpp \
@@ -21,7 +20,7 @@ SOURCES += \
     Guard.cpp \
     CaserneEditWindow.cpp \
     TCaserne.cpp \
-    CaserneEditWindow.cpp \
     StaffEditWindow.cpp \
+    includes/SubWidget.cpp
 
 RESOURCES +=

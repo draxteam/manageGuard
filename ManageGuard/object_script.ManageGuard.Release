@@ -8,9 +8,10 @@ INPUT(
 ./release\Guard.o
 ./release\CaserneEditWindow.o
 ./release\TCaserne.o
-./release\CaserneEditWindow.o
 ./release\StaffEditWindow.o
+./release\SubWidget.o
 ./release\moc_MainWindow.o
 ./release\moc_CaserneEditWindow.o
 ./release\moc_StaffEditWindow.o
+./release\moc_SubWidget.o
 );

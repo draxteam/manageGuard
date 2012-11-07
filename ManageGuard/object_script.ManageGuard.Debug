@@ -8,9 +8,10 @@ INPUT(
 ./debug\Guard.o
 ./debug\CaserneEditWindow.o
 ./debug\TCaserne.o
-./debug\CaserneEditWindow.o
 ./debug\StaffEditWindow.o
+./debug\SubWidget.o
 ./debug\moc_MainWindow.o
 ./debug\moc_CaserneEditWindow.o
 ./debug\moc_StaffEditWindow.o
+./debug\moc_SubWidget.o
 );
