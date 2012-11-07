@@ -19,7 +19,6 @@ SOURCES += \
     Caserne.cpp \
     Member.cpp \
     Guard.cpp \
-    CreateStaffWindow.cpp \
     CaserneEditWindow.cpp \
     TCaserne.cpp \
     CaserneEditWindow.cpp \

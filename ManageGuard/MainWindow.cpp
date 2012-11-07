@@ -31,10 +31,10 @@ void MainWindow::m_createActions()
 {
     // MenuBar ===
      // Fichier
-    w_aCreateCaserne = new QAction(QIcon("icons/new.png"), "Nouvelle caserne", this);
+    w_aCreateCaserne = new QAction(QIcon("icons/new.jpg"), "Nouvelle caserne", this);
         w_aCreateCaserne->setShortcut(QKeySequence("Ctrl+N"));
         connect(w_aCreateCaserne, SIGNAL(triggered()), this, SLOT(sl_createCaserne()));
-    w_aOpenCaserne = new QAction(QIcon("icons/open.png"), "Charger une caserne", this);
+    w_aOpenCaserne = new QAction(QIcon("icons/open.jpg"), "Charger une caserne", this);
         w_aOpenCaserne->setShortcut(QKeySequence("Ctrl+O"));
         connect(w_aOpenCaserne, SIGNAL(triggered()), this, SLOT(sl_loadCaserne()));
     w_aLastCaserneT[0] = new QAction("Caserne 1", this);
@@ -42,11 +42,11 @@ void MainWindow::m_createActions()
     w_aLastCaserneT[2] = new QAction("Caserne 3", this);
     w_aLastCaserneT[3] = new QAction("Caserne 4", this);
     w_aLastCaserneT[4] = new QAction("Caserne 5", this);
-    w_aPrint = new QAction(QIcon("icons/print.png"), "Imprimer", this);
+    w_aPrint = new QAction(QIcon("icons/print.jpg"), "Imprimer", this);
         w_aPrint->setShortcut(QKeySequence("Ctrl+P"));
-    w_aSetting = new QAction(QIcon("icons/settings.png"), "Préférences", this);
+    w_aSetting = new QAction(QIcon("icons/settings.jpg"), "Préférences", this);
         w_aSetting->setShortcut(QKeySequence("Ctrl+S"));
-    w_aExit = new QAction(QIcon("icons/exit.png"), "Quitter", this);
+    w_aExit = new QAction(QIcon("icons/exit.jpg"), "Quitter", this);
         w_aExit->setShortcut(QKeySequence("Esc"));
         connect(w_aExit, SIGNAL(triggered()), qApp, SLOT(quit()));
 
@@ -66,18 +66,18 @@ void MainWindow::m_createActions()
         w_aDelStaff->setShortcut(QKeySequence("F5"));
 
      // Affichage
-    w_aFullScreen = new QAction(QIcon("icons/fullscreen.png"), "Plein écran", this);
+    w_aFullScreen = new QAction(QIcon("icons/fullscreen.jpg"), "Plein écran", this);
         w_aFullScreen->setShortcut(QKeySequence("F11"));
         w_aFullScreen->setCheckable(true);
         connect(w_aFullScreen, SIGNAL(triggered()), this, SLOT(sl_showFullScreen()));
 
      // Aide
-    w_aHelp = new QAction(QIcon("icons/help.png"), "Aide", this);
+    w_aHelp = new QAction(QIcon("icons/help.jpg"), "Aide", this);
         w_aHelp->setShortcut(QKeySequence("F10"));
-    w_aAbout = new QAction(QIcon("icons/about.png"), "A propos", this);
+    w_aAbout = new QAction(QIcon("icons/about.jpg"), "A propos", this);
         connect(w_aAbout, SIGNAL(triggered()), this, SLOT(sl_about()));
     w_aVersion = new QAction("Version en cours", this);
-    w_aSite = new QAction(QIcon("icons/site.png"), "Se rendre à draxteam.tk", this);
+    w_aSite = new QAction(QIcon("icons/site.jpg"), "Se rendre à draxteam.tk", this);
         w_aSite->setShortcut(QKeySequence("F9"));
 }
 
@@ -131,7 +131,7 @@ void MainWindow::m_displayToolBar()
 {
     w_tbTool = addToolBar("Barre d'outils");
     w_tbTool->setMovable(false);
-    w_tbTool->setIconSize(QSize(20, 20));
+    w_tbTool->setIconSize(QSize(17, 17));
 
     w_tbTool->addAction(w_aCreateCaserne);
     w_tbTool->addAction(w_aOpenCaserne);
@@ -264,40 +264,34 @@ void MainWindow::sl_createStaff()
 void MainWindow::m_addStyleSheets()
 {
     // MenuBar
-    w_mbMenuBar->setStyleSheet("QMenuBar {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6B6B6B, stop:1 #5E5E5E);}\
-                                QMenuBar::item {background:transparent; color:#DBDBDB;}\
-                                QMenuBar::item:selected {color:#B8B8B8;}");
+    w_mbMenuBar->setStyleSheet("QMenuBar {background-color:#2d2d30;}\
+                                QMenuBar::item {background:transparent; color:#c1c1c1;}\
+                                QMenuBar::item:selected {background:#d47e18; color:#f0f0f0;}");
 
     // Menus, ToolBar
-    setStyleSheet("QMenu {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6B6B6B, stop:1 #424242);\
-                          border:1px solid #404040; }\
-                   QMenu::item {background:transparent; color:#DBDBDB;}\
-                   QMenu::item:selected {color:#B8B8B8;}\
-                   QMenu::separator {background:#DBDBDB; margin-left:10px; margin-right:5px; height:1px;}\
-                   /* ToolBar */ \
-                   QToolBar {border:0; border-bottom:1px solid #404040;\
-                             background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #5E5E5E, stop:1 #545454);}\
-                   QToolBar::separator {background:#B8B8B8; margin: 4px 10px 4px 10px; width:1px;}\
-                   QToolButton:hover {border:0;}\
-                   QToolTip {color:#B8B8B8; border: 1px solid #404040;\
-                             background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6B6B6B, stop:1 #545454)}\
-                   /* Fenêtre */ \
-                   QMainWindow, QDialog {background-color:#6B6B6B; background-image:url('icons/background.jpg')}\
-                   QLabel {color:#DBDBDB;}\
-                   /* Dock */ \
-                   QDockWidget {background:transparent; color:#B8B8B8; titlebar-close-icon:url('icons/close_hover.png');}\
-                   QDockWidget::close-button:hover, QDockWidget::float-button:hover {border:0; titlebar-close-icon:url(icons/close_hover.png);}\
-                   QDockWidget::title {margin-left:5px;}\
-                   /* ListView */ \
-                   QTreeView {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6B6B6B, stop:1 #424242); border:1px solid #404040;\
-                              color:#DBDBDB;}\
-                   QTreeView::item:selected {background: #404040; border:0; color:#B8B8B8;}\
-                   QAbstractItemView {border:0;}\
-                   /* PushButton */ \
-                   QPushButton {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6B6B6B, stop:1 #5E5E5E); border:1px solid #404040;\
-                                height:20px;}\
-                   QPushButton:hover {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #5E5E5E, stop:1 #424242);\
-                                      border:1px solid #404040; height:20px;}\
-                   QPushButton:pressed {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #424242, stop:1 #6B6B6B);\
-                                        border:1px solid #404040; height:20px;}");
+    setStyleSheet("QMenu {background-color:#2d2d30; border:1px solid #d47e18;}"
+                  "QMenu::item {background:transparent; color:#c1c1c1;}"
+                  "QMenu::item:selected {color:#d47e18;}"
+                  "QMenu::separator {background:#d47e18; margin: 3px 5px 3px 5px; height:1px;}"
+                   /* ToolBar */
+                  "QToolBar {border:0; border-bottom:1px solid #404040; background-color:#2d2d30;}"
+                  "QToolBar::separator {background:#B8B8B8; margin: 4px 7px 4px 7px; width:1px;}"
+                  "QToolButton {border:0; margin-right:2px; margin-bottom:3px;}"
+                  "QToolTip {color:#e7e7e7; border:1px solid #d47e18; background-color:#2d2d30;}"
+                   /* Fenêtre */
+                  "QMainWindow, QDialog {background-color:#28282b;}"
+                  "QLabel {color:#c1c1c1;}"
+                   /* Dock */
+                  "QDockWidget {background:#1f1f22; color:#B8B8B8;}"
+                  "QDockWidget::close-button:hover, QDockWidget::float-button:hover {border:0;}"
+                   /* ListView */
+                  "QTreeView {background-color:#252526; border:1px solid #404040; color:#DBDBDB;}"
+                  "QTreeView::item:selected {background: #404040; border:0; color:#B8B8B8;}"
+                   /* PushButton */
+                  "QPushButton {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6B6B6B, stop:1 #5E5E5E); border:1px solid #404040;"
+                               "height:20px;}"
+                  "QPushButton:hover {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #5E5E5E, stop:1 #424242);"
+                                     "border:1px solid #404040; height:20px;}"
+                  "QPushButton:pressed {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #424242, stop:1 #6B6B6B);"
+                                       "border:1px solid #404040; height:20px;}");
 }

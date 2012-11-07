@@ -2,6 +2,7 @@
 #define STAFFEDITWINDOW_H
 
 #include <QtGui>
+#include "includes/SubWidget.h"
 
 class StaffEditWindow : public QDialog
 {
@@ -31,6 +32,7 @@ private:
     QPushButton *w_pbCancel;
 
     QVBoxLayout *w_vlAssignRow;
+    AssignItem *w_assignItem;
     int a_nbItem;
 };
 
