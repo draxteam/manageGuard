@@ -10,11 +10,19 @@ class AssignItem : public QWidget
 
 public:
     AssignItem();
+    void createRow(int rowNb);
+
+signals:
+    void si_removeAssignRow(int itemNb);
+
+private slots:
+    void sl_removeAssignRow();
 
 private:
     QLabel *w_lAssign;
     QPushButton *w_pbDelAssign;
     QHBoxLayout *w_hlAssignBox;
+    int a_Nb;
 
 };
 

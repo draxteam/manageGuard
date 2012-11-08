@@ -11,10 +11,14 @@ class StaffEditWindow : public QDialog
 public:
     StaffEditWindow();
     void openCreate();
+    void openEdit();
+    void openDelete();
 
 public slots:
     void sl_addRowAssign();
-    void sl_delRowAssign();
+
+private slots:
+    void sl_delRowAssign(int itemNb);
 
 private:
     void m_addStyleSheets();
@@ -27,13 +31,15 @@ private:
     QLineEdit *w_leStaffSecName;
     QComboBox *w_cbStaffGrade;
     QComboBox *w_cbStaffAssign;
+    QComboBox *w_cbRemoveStaff;
     QPushButton *w_pbAddAssign;
-    QPushButton *w_pbCreate;
+    QPushButton *w_pbOk;
     QPushButton *w_pbCancel;
 
     QVBoxLayout *w_vlAssignRow;
     AssignItem *w_assignItem;
     int a_nbItem;
+    int a_nbItemStart;
 };
 
 #endif // CREATECASERNEWINDOW_H

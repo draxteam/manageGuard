@@ -5,6 +5,9 @@
 #include <QMenuBar>
 #include <QDockWidget>
 #include <QAction>
+#include <QDirIterator>
+#include <iostream>
+#include <fstream>
 
 #include "CaserneEditWindow.h"
 #include "StaffEditWindow.h"
@@ -26,6 +29,8 @@ private slots:
     void sl_editCaserne();
     void sl_deleteCaserne();
     void sl_createStaff();
+    void sl_editStaff();
+    void sl_deleteStaff();
     void sl_about();
 
 
@@ -34,6 +39,7 @@ private:
     void m_displayCentralWidget();
     void m_createActions();
     void m_displayMenu();
+    void m_lastCaserneCreateMenu();
     void m_displayToolBar();
     void m_displayDock();
     void m_addStyleSheets();
@@ -41,8 +47,13 @@ private:
 
     // Attributs ===
      //Fenetre
-    QWidget *w_wPrincipal;
-    QGridLayout *w_lPrincipal;
+    QTabWidget *w_tbMainTab;
+    QWidget *w_tbo1MainTab;
+    QWidget *w_tbo2MainTab;
+    QVBoxLayout *w_vlOng1MainTab;
+    QPushButton *w_pbTest1;
+    QVBoxLayout *w_vlOng2MainTab;
+    QPushButton *w_pbTest2;
 
 
      //Menus
@@ -51,7 +62,7 @@ private:
     QAction *w_aCreateCaserne;
     QAction *w_aOpenCaserne;
     QMenu *w_mLastCaserne;
-    QAction *w_aLastCaserneT[5];
+    QAction *w_aLastCaserneT;
     QAction *w_aPrint;
     QAction *w_aSetting;
     QAction *w_aExit;
@@ -102,6 +113,9 @@ private:
      //Slots
     CaserneEditWindow *caserneWindow;
     StaffEditWindow *staffWindow;
+
+
+    QDirIterator *w_aLastCaserneTName;
 };
 
 #endif // MAINWINDOW_H
