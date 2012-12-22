@@ -2,9 +2,10 @@
 #define CASERNEEDITWINDOW_H
 
 #include <QtGui>
+#include <QObject>
 #include "Caserne.h"
 #include "TCaserne.h"
-#include <vector>
+#include <QList>
 #include <QDirIterator>
 #include <iostream>
 #include <fstream>
@@ -22,26 +23,31 @@ public:
 
 private:
     void m_addStyleSheets();
-    void m_chargementCasernes();
+    void m_listerCasernes();
 
     QFormLayout *w_flMainCaserneWindow;
     QHBoxLayout *w_hlCaserneWindow;
     QLineEdit *w_leCaserneName;
     QLineEdit *w_leCaserneChief;
     QComboBox *w_cbCaserneName;
+    QLabel *w_lDelete;
     QPushButton *w_pbOk;
     QPushButton *w_pbCancel;
 
-    std::string a_name;
-    std::string a_chef;
-    int a_nbrCaserne;
-    std::vector <TCaserne> a_listCaserne;
+    QString a_nameTemp;
+    QString a_chefTemp;
+    QList <QString> a_listCaserne;
     QDirIterator *a_compteur;
-    TCaserne a_caserne;
+    TCaserne *a_caserneTemp;
+    Caserne *a_caserne;
+    bool a_existCaserne;
 
 
 public slots:
     void sl_createCaserne();
+    void sl_loadCaserne();
+    void sl_editCaserne();
+    void sl_deleteCaserne();
     void sl_backupName(QString name);
     void sl_backupChef(QString chef);
 

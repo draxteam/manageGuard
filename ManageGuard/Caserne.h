@@ -3,19 +3,18 @@
 
 #include "QObject"
 #include "QCoreApplication"
-#include "TMember.h"
-#include "TGuard.h"
-#include <iostream>
-#include <fstream>
-#include <vector>
 #include "TCaserne.h"
-
+#include <QFile>
 
 class Caserne
 {
     public:
-        Caserne(std::string name, std::string chef);       //Constructeur
-        void m_create();    //Créer la caserne
+        Caserne(QString name, QString chef);        //Constructeur
+        Caserne(QString name);      //Constructeur
+        ~Caserne();
+        void m_create();        //Creation de la caserne
+        void m_getBack();       //Récupération de la caserne
+        void m_set(QString name, QString chef);
   //      void m_addMember(std::string name, bool statut1, bool statut2, bool statut3, bool statut4); //Ajoute un membre au personnel
  //       void m_deleteMember(std::string name);   //Suprime un membre du personnel
  //       void m_settingMember(std::string name, bool statut1, bool statut2, bool statut3, bool statut4);
@@ -23,10 +22,8 @@ class Caserne
    //     void m_deleteGuard(int date[4]);
 
     private:
-        TCaserne *a_caserne;
-        std::string a_nameFile;
-        std::ofstream a_fileO;
-        std::ifstream a_fileI;
+        TCaserne *a_caserne;        //Contient la caserne
+        QString a_file;     //Contient le fichier de destination
 };
 
 #endif // CASERNE_H

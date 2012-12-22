@@ -2,10 +2,43 @@
 
 TCaserne::TCaserne ()
 {
-
 }
 
-TCaserne::TCaserne (std::string name, std::string chef)
+TCaserne::TCaserne (QString name, QString chef)
+{
+    a_name = name;
+    a_chef = chef;
+}
+
+QString TCaserne::m_getName()
+{
+    return a_name;
+}
+
+void TCaserne::m_initClasseSystem()
+{
+    qRegisterMetaTypeStreamOperators<TCaserne>("TCaserne");
+    qMetaTypeId<TCaserne>();
+}
+
+QDataStream & operator << (QDataStream & out, const TCaserne & Valeur)
+{
+    out << Valeur.a_name
+        << Valeur.a_chef
+        << Valeur.a_listMembers;
+
+    return out;
+}
+QDataStream & operator >> (QDataStream & in, TCaserne & Valeur)
+{
+    in >> Valeur.a_name;
+    in >> Valeur.a_chef;
+    in >> Valeur.a_listMembers;
+
+    return in;
+}
+
+void TCaserne::m_set(QString name, QString chef)
 {
     a_name = name;
     a_chef = chef;

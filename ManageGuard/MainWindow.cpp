@@ -2,24 +2,23 @@
 
 MainWindow::MainWindow()
 {
-    // Coeur ===
+    //===INITIALISATION===//
+    caserneWindow = new CaserneEditWindow();
+
+    //===ZONE PRINCIPALE===//
     m_displayCentralWidget();
 
-    // Actions ===
+    //===ACTIONS===//
     m_createActions();
 
-    // Dock Menu ===
+    //===DOCK MENU===//
     m_displayDock();
 
-    // ToolBar ===
+    //===BARRE D'OUTILS===//
     m_displayToolBar();
 
-    // Menu ===
+    //===MENUS===//
     m_displayMenu();
-
-    // Fenêtres complémentaires ===
-    caserneWindow = new CaserneEditWindow();
-    staffWindow = new StaffEditWindow();
 }
 
 
@@ -27,27 +26,8 @@ MainWindow::MainWindow()
 // Méthodes
 void MainWindow::m_displayCentralWidget()
 {
-    w_tbMainTab = new QTabWidget(this);
-    int height(this->height());
-    int width(this->width());
-        w_tbMainTab->setGeometry(width, height, width, height);
-    w_tbo1MainTab = new QWidget;
-    w_tbo2MainTab = new QWidget;
-
-        w_pbTest1 = new QPushButton("Just a test");
-        w_vlOng1MainTab = new QVBoxLayout;
-        w_vlOng1MainTab->addWidget(w_pbTest1);
-        w_tbo1MainTab->setLayout(w_vlOng1MainTab);
-
-        w_pbTest2 = new QPushButton("Just a test");
-        w_vlOng2MainTab = new QVBoxLayout;
-        w_vlOng2MainTab->addWidget(w_pbTest2);
-        w_tbo2MainTab->setLayout(w_vlOng2MainTab);
-
-    w_tbMainTab->addTab(w_tbo1MainTab, "Gardes");
-    w_tbMainTab->addTab(w_tbo2MainTab, "Management");
-
-    setCentralWidget(w_tbMainTab);
+    w_wPrincipal = new QWidget;
+    setCentralWidget(w_wPrincipal);
 }
 
 void MainWindow::m_createActions()
@@ -60,7 +40,11 @@ void MainWindow::m_createActions()
     w_aOpenCaserne = new QAction(QIcon("icons/open.jpg"), "Charger une caserne", this);
         w_aOpenCaserne->setShortcut(QKeySequence("Ctrl+O"));
         connect(w_aOpenCaserne, SIGNAL(triggered()), this, SLOT(sl_loadCaserne()));
-    m_lastCaserneCreateMenu();
+    w_aLastCaserneT[0] = new QAction("Caserne 1", this);
+    w_aLastCaserneT[1] = new QAction("Caserne 2", this);
+    w_aLastCaserneT[2] = new QAction("Caserne 3", this);
+    w_aLastCaserneT[3] = new QAction("Caserne 4", this);
+    w_aLastCaserneT[4] = new QAction("Caserne 5", this);
     w_aPrint = new QAction(QIcon("icons/print.jpg"), "Imprimer", this);
         w_aPrint->setShortcut(QKeySequence("Ctrl+P"));
     w_aSetting = new QAction(QIcon("icons/settings.jpg"), "Préférences", this);
@@ -76,15 +60,13 @@ void MainWindow::m_createActions()
     w_aDelCaserne = new QAction("Supprimer la caserne", this);
         w_aDelCaserne->setShortcut(QKeySequence("F2"));
         connect(w_aDelCaserne, SIGNAL(triggered()), this, SLOT(sl_deleteCaserne()));
-    w_aAddStaff = new QAction(QIcon("icons/staff_add.jpg"), "Ajouter du personnel", this);
+    w_aAddStaff = new QAction("Ajouter du personnel", this);
         w_aAddStaff->setShortcut(QKeySequence("F3"));
         connect(w_aAddStaff, SIGNAL(triggered()), this, SLOT(sl_createStaff()));
-    w_aEditStaff = new QAction(QIcon("icons/staff_edit.jpg"), "Modifier le personnel", this);
+    w_aEditStaff = new QAction("Modifier le personnel", this);
         w_aEditStaff->setShortcut(QKeySequence("F4"));
-        connect(w_aEditStaff, SIGNAL(triggered()), this, SLOT(sl_editStaff()));
-    w_aDelStaff = new QAction(QIcon("icons/staff_remove.jpg"), "Supprimer du personnel", this);
+    w_aDelStaff = new QAction("Supprimer du personnel", this);
         w_aDelStaff->setShortcut(QKeySequence("F5"));
-        connect(w_aDelStaff, SIGNAL(triggered()), this, SLOT(sl_deleteStaff()));
 
      // Affichage
     w_aFullScreen = new QAction(QIcon("icons/fullscreen.jpg"), "Plein écran", this);
@@ -111,9 +93,12 @@ void MainWindow::m_displayMenu()
     w_mFile = w_mbMenuBar->addMenu("Fichier");
     w_mFile->addAction(w_aCreateCaserne);
     w_mFile->addAction(w_aOpenCaserne);
-    w_mLastCaserne = w_mFile->addMenu("Casernes récentes");
-    for (int i = 0; i < 5; ++i)
-        //w_mLastCaserne->addAction(&w_aLastCaserneT[i]);
+    w_mLastCaserne = w_mFile->addMenu("Casernes récemment gérées");
+        w_mLastCaserne->addAction(w_aLastCaserneT[0]);
+        w_mLastCaserne->addAction(w_aLastCaserneT[1]);
+        w_mLastCaserne->addAction(w_aLastCaserneT[2]);
+        w_mLastCaserne->addAction(w_aLastCaserneT[3]);
+        w_mLastCaserne->addAction(w_aLastCaserneT[4]);
     w_mFile->addSeparator();
     w_mFile->addAction(w_aPrint);
     w_mFile->addAction(w_aSetting);
@@ -145,10 +130,6 @@ void MainWindow::m_displayMenu()
     m_addStyleSheets();
 }
 
-void MainWindow::m_lastCaserneCreateMenu()
-{
-}
-
 void MainWindow::m_displayToolBar()
 {
     w_tbTool = addToolBar("Barre d'outils");
@@ -159,10 +140,6 @@ void MainWindow::m_displayToolBar()
     w_tbTool->addAction(w_aOpenCaserne);
     w_tbTool->addAction(w_aPrint);
     w_tbTool->addAction(w_aSetting);
-    w_tbTool->addSeparator();
-    w_tbTool->addAction(w_aAddStaff);
-    w_tbTool->addAction(w_aEditStaff);
-    w_tbTool->addAction(w_aDelStaff);
     w_tbTool->addSeparator();
     w_tbTool->addAction(w_aFullScreen);
     w_tbTool->addSeparator();
@@ -276,17 +253,8 @@ void MainWindow::sl_deleteCaserne()
  // Gestion des fenêtres staff
 void MainWindow::sl_createStaff()
 {
+    staffWindow = new StaffEditWindow();
     staffWindow->openCreate();
-}
-
-void MainWindow::sl_editStaff()
-{
-    staffWindow->openEdit();
-}
-
-void MainWindow::sl_deleteStaff()
-{
-    staffWindow->openDelete();
 }
 
 
@@ -295,9 +263,9 @@ void MainWindow::sl_deleteStaff()
 void MainWindow::m_addStyleSheets()
 {
     // MenuBar
-    w_mbMenuBar->setStyleSheet("QMenuBar {background-color:#2d2d30;}"
-                               "QMenuBar::item {background:transparent; color:#c1c1c1;}"
-                               "QMenuBar::item:selected {background:#d47e18; color:#f0f0f0;}");
+    w_mbMenuBar->setStyleSheet("QMenuBar {background-color:#2d2d30;}\
+                                QMenuBar::item {background:transparent; color:#c1c1c1;}\
+                                QMenuBar::item:selected {background:#d47e18; color:#f0f0f0;}");
 
     // Menus, ToolBar
     setStyleSheet("QMenu {background-color:#2d2d30; border:1px solid #d47e18;}"
@@ -305,7 +273,7 @@ void MainWindow::m_addStyleSheets()
                   "QMenu::item:selected {color:#d47e18;}"
                   "QMenu::separator {background:#d47e18; margin: 3px 5px 3px 5px; height:1px;}"
                    /* ToolBar */
-                  "QToolBar {border:0; border-bottom:1px solid #d47e18; background-color:#2d2d30;}"
+                  "QToolBar {border:0; border-bottom:1px solid #404040; background-color:#2d2d30;}"
                   "QToolBar::separator {background:#B8B8B8; margin: 4px 7px 4px 7px; width:1px;}"
                   "QToolButton {border:0; margin-right:2px; margin-bottom:3px;}"
                   "QToolTip {color:#e7e7e7; border:1px solid #d47e18; background-color:#2d2d30;}"
@@ -313,21 +281,16 @@ void MainWindow::m_addStyleSheets()
                   "QMainWindow, QDialog {background-color:#28282b;}"
                   "QLabel {color:#c1c1c1;}"
                    /* Dock */
-                  "QDockWidget {background-color:#1f1f22; color:#B8B8B8;}"
+                  "QDockWidget {background:#1f1f22; color:#B8B8B8;}"
                   "QDockWidget::close-button:hover, QDockWidget::float-button:hover {border:0;}"
                    /* ListView */
                   "QTreeView {background-color:#252526; border:1px solid #404040; color:#DBDBDB;}"
-                  "QTreeView::item:selected {background: #d47e18; border:0; color:#f0f0f0; padding:-1px;}"
-                   /* LineEdit */
-                  "QLineEdit {background-color:#1f1f22; border:0;}"
-                  "QLineEdit:focus {background-color:#d47e18; border:0; color:#f0f0f0;}"
+                  "QTreeView::item:selected {background: #404040; border:0; color:#B8B8B8;}"
                    /* PushButton */
-                  "QPushButton {background-color:#1f1f22; border:0; height:20px; color:#c1c1c1;}"
-                  "QPushButton:hover {background-color:#d47e18; border:0; color:#f0f0f0;}"
-                  "QPushButton:pressed {background-color:#d47e18; border:0; color:#f0f0f0;}"
-                   /* TabWigdet */
-                  "QTabWidget::pane {border-top: 2px solid #d47e18; background-color:#252526;}"
-                  "QTabBar::tab {color:#c1c1c1; border:0; min-width: 150px; padding: 3px; margin-bottom:-1px;}"
-                  "QTabBar::tab:selected, QTabBar::tab:hover {color:#f0f0f0; background-color: #d47e18;}"
-                  "QTabBar::tab:!selected {background-color:#1f1f22;}");
+                  "QPushButton {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6B6B6B, stop:1 #5E5E5E); border:1px solid #404040;"
+                               "height:20px;}"
+                  "QPushButton:hover {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #5E5E5E, stop:1 #424242);"
+                                     "border:1px solid #404040; height:20px;}"
+                  "QPushButton:pressed {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #424242, stop:1 #6B6B6B);"
+                                       "border:1px solid #404040; height:20px;}");
 }

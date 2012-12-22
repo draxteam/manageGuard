@@ -1,18 +1,48 @@
 #include "Caserne.h"
 
-Caserne::Caserne (std::string name, std::string chef)
+Caserne::Caserne (QString name, QString chef)
 {    
     a_caserne = new TCaserne(name, chef);
+    a_caserne->m_initClasseSystem();
 
-    std::string extension = ".cas";
-    a_nameFile = "Saves/Casernes/" + name + extension;
+    QString extension = ".cas";
+    a_file = "Saves/Casernes/" + name + extension;
+}
+
+Caserne::Caserne (QString name)
+{
+    QString extension = ".cas";
+    a_file = "Saves/Casernes/" + name + extension;
+}
+
+Caserne::~Caserne()
+{
+    QFile file(a_file);
+    file.remove();
 }
 
 void Caserne::m_create()
 {
-        a_fileO.open(a_nameFile.c_str(), std::ios::out | std::ios::binary);
-        a_fileO.write ((char *)&a_caserne, sizeof(TCaserne));
-        a_fileO.close();
+    QFile file(a_file);
+    file.open(QIODevice::WriteOnly);
+    QDataStream out(&file);
+    out << *a_caserne;
+    file.close();
+}
+
+void Caserne::m_getBack()
+{
+    a_caserne = new TCaserne();
+    QFile file(a_file);
+    file.open(QIODevice::ReadOnly);
+    QDataStream in(&file);
+    in >> *a_caserne;
+    file.close();
+}
+
+void Caserne::m_set(QString name, QString chef)
+{
+    a_caserne->m_set(name, chef);
 }
 
 /*

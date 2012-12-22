@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     MainWindow window;
 
-    window.setWindowTitle("Manage Guard v0.11108 alpha");
+    window.setWindowTitle("Manage Guard v0.11101 alpha");
     window.setMinimumSize(500, 400);
 
     window.show();
