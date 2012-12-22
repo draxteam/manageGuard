@@ -11,6 +11,7 @@
 
 #include "CaserneEditWindow.h"
 #include "StaffEditWindow.h"
+#include "MGSettings.h"
 
 class MainWindow : public QMainWindow
 {
@@ -32,6 +33,7 @@ private slots:
     void sl_editStaff();
     void sl_deleteStaff();
     void sl_about();
+    void sl_settings();
 
 
 private:
@@ -42,10 +44,12 @@ private:
     void m_lastCaserneCreateMenu();
     void m_displayToolBar();
     void m_displayDock();
-    void m_addStyleSheets();
+    void m_applyStyle();
 
 
     // Attributs ===
+    // Options
+    MGSettings *settingsWindow;
      //Fenetre
     QTabWidget *w_tbMainTab;
     QWidget *w_tbo1MainTab;
@@ -54,7 +58,6 @@ private:
     QPushButton *w_pbTest1;
     QVBoxLayout *w_vlOng2MainTab;
     QPushButton *w_pbTest2;
-
 
      //Menus
     QMenuBar *w_mbMenuBar;

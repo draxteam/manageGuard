@@ -10,6 +10,7 @@ class AssignItem : public QWidget
 
 public:
     AssignItem();
+    virtual ~AssignItem();
     void createRow(int rowNb);
 
 signals:

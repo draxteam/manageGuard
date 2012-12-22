@@ -160,6 +160,7 @@ void StaffEditWindow::sl_addRowAssign()
 void StaffEditWindow::sl_delRowAssign(int itemNb)
 {
     w_vlAssignRow->removeWidget(&w_assignItem[itemNb]);
+    delete[] w_assignItem;
 }
 
 

@@ -5,11 +5,15 @@ AssignItem::AssignItem()
 {
 }
 
+AssignItem::~AssignItem()
+{
+    delete w_hlAssignBox;
+}
+
 void AssignItem::createRow(int rowNb)
 {
     a_Nb = rowNb;
-    w_lAssign = new QLabel;
-        w_lAssign->setText("Assigné dans la caserne " + QString::number(rowNb));
+    w_lAssign = new QLabel("Assigné dans la caserne " + QString::number(rowNb));
     w_pbDelAssign = new QPushButton;
         w_pbDelAssign->setIcon(QIcon("icons/del.png"));
         w_pbDelAssign->setStyleSheet("QPushButton {background:0; border:0; height:15px; max-width:15px;}");
