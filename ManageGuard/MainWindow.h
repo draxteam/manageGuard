@@ -8,6 +8,7 @@
 
 #include "CaserneEditWindow.h"
 #include "StaffEditWindow.h"
+#include "MGSettings.h"
 
 class MainWindow : public QMainWindow
 {
@@ -27,6 +28,9 @@ private slots:
     void sl_deleteCaserne();
     void sl_createStaff();
     void sl_about();
+    void sl_settings();
+    void sl_editStaff();
+    void sl_deleteStaff();
 
 
 private:
@@ -36,14 +40,15 @@ private:
     void m_displayMenu();
     void m_displayToolBar();
     void m_displayDock();
-    void m_addStyleSheets();
+    void m_applyStyle();
 
 
     // Attributs ===
+    // Options
+    MGSettings *settingsWindow;
      //Fenetre
     QWidget *w_wPrincipal;
     QGridLayout *w_lPrincipal;
-
 
      //Menus
     QMenuBar *w_mbMenuBar;
@@ -97,7 +102,7 @@ private:
     QAction *w_aViewContextDockMenu;
     QTreeView *w_tvCaserneTree;
     QStandardItemModel *w_modCaserneTree;
-        QStandardItem *w_itemCaserne;
+    QStandardItem *w_itemCaserne;
 
      //Slots
     CaserneEditWindow *caserneWindow;

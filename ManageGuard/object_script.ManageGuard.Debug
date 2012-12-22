@@ -10,8 +10,10 @@ INPUT(
 ./debug\TCaserne.o
 ./debug\StaffEditWindow.o
 ./debug\SubWidget.o
+./debug\MGSettings.o
 ./debug\moc_MainWindow.o
 ./debug\moc_CaserneEditWindow.o
 ./debug\moc_StaffEditWindow.o
 ./debug\moc_SubWidget.o
+./debug\moc_MGSettings.o
 );

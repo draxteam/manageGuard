@@ -10,8 +10,10 @@ INPUT(
 ./release\TCaserne.o
 ./release\StaffEditWindow.o
 ./release\SubWidget.o
+./release\MGSettings.o
 ./release\moc_MainWindow.o
 ./release\moc_CaserneEditWindow.o
 ./release\moc_StaffEditWindow.o
 ./release\moc_SubWidget.o
+./release\moc_MGSettings.o
 );

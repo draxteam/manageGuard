@@ -8,7 +8,8 @@ HEADERS += \
     CaserneEditWindow.h \
     TCaserne.h \
     StaffEditWindow.h \
-    includes/SubWidget.h
+    includes/SubWidget.h \
+    MGSettings.h
 
 SOURCES += \
     MainWindow.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
     CaserneEditWindow.cpp \
     TCaserne.cpp \
     StaffEditWindow.cpp \
-    includes/SubWidget.cpp
+    includes/SubWidget.cpp \
+    MGSettings.cpp
 
 RESOURCES +=

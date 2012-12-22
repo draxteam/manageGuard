@@ -180,20 +180,23 @@ void CaserneEditWindow::openDelete()
 // Méthode Graphique
 void CaserneEditWindow::m_addStyleSheets()
 {
-    setStyleSheet("QDialog {background-color:#6B6B6B; background-image:url(icons/background.jpg)}\
-                   QLineEdit {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6B6B6B, stop:1 #5E5E5E); border:1px solid #404040;}\
-                   QWidget {color:#B8B8B8;}\
-                   QPushButton {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6B6B6B, stop:1 #5E5E5E); border:1px solid #404040;\
-                                height:20px;}\
-                   QPushButton:hover {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #5E5E5E, stop:1 #424242);\
-                                 border:1px solid #404040; height:20px;}\
-                   QPushButton:pressed {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #424242, stop:1 #6B6B6B);\
-                                 border:1px solid #404040; height:20px;}\
-                   QComboBox {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6B6B6B, stop:1 #5E5E5E); border:1px solid #404040;}\
-                   QComboBox QAbstractItemView {border:1px solid #404040;\
-                                                background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #5E5E5E, stop:1 #424242);\
-                                                selection-background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #424242, stop:1 #6B6B6B);}\
-                   QString {background-color:#B8B8B8; border:1px solid #404040;}");
+    setStyleSheet("QDialog {background-color:#28282b;}"
+                 "QLineEdit {background-color:#1f1f22; border:0;}"
+                 "QLineEdit:focus {background-color:#d47e18; border:0; color:#f0f0f0;}"
+                 "QWidget {color:#B8B8B8;}"
+                 "QPushButton {background-color:#1f1f22; border:0; height:20px; color:#c1c1c1;}"
+                 "QPushButton:hover {background-color:#d47e18; border:0; color:#f0f0f0;}"
+                 "QPushButton:pressed {background-color:#d47e18; border:0; color:#f0f0f0;}"
+                 "QComboBox {background-color:#1f1f22; border:0;}"
+                 "QComboBox QAbstractItemView {border:0; background-color:#28282b; selection-background-color:#d47e18; selection-color:#f0f0f0;}"
+                 "QScrollBar:vertical {background-color:#1f1f22; width: 15px; margin: 10px 0 10px 0;}"
+                 "QScrollBar::handle:vertical {background-color:#d47e18; margin: 3px;}"
+                 "QScrollBar::add-line:vertical {border:0; background-color: #1f1f22; height: 10px; subcontrol-position: bottom;"
+                                                "subcontrol-origin: margin;}"
+                 "QScrollBar::sub-line:vertical {border:0; background-color: #1f1f22; height: 10px; subcontrol-position: top;"
+                                                "subcontrol-origin: margin;}"
+                 "QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {border: 0; width: 4px; height: 2px; background: #d47e18;}"
+                 "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}");
 }
 
 void CaserneEditWindow::sl_createCaserne()

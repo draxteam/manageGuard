@@ -19,6 +19,13 @@ MainWindow::MainWindow()
 
     //===MENUS===//
     m_displayMenu();
+
+    // Menu ===
+    m_applyStyle();
+
+    // Fenêtres complémentaires ===
+    caserneWindow = new CaserneEditWindow();
+    staffWindow = new StaffEditWindow();
 }
 
 
@@ -49,6 +56,7 @@ void MainWindow::m_createActions()
         w_aPrint->setShortcut(QKeySequence("Ctrl+P"));
     w_aSetting = new QAction(QIcon("icons/settings.jpg"), "Préférences", this);
         w_aSetting->setShortcut(QKeySequence("Ctrl+S"));
+        connect(w_aSetting, SIGNAL(triggered()), this, SLOT(sl_settings()));
     w_aExit = new QAction(QIcon("icons/exit.jpg"), "Quitter", this);
         w_aExit->setShortcut(QKeySequence("Esc"));
         connect(w_aExit, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -126,8 +134,6 @@ void MainWindow::m_displayMenu()
     w_mHelp->addAction(w_aAbout);
     w_mHelp->addAction(w_aVersion);
     w_mHelp->addAction(w_aSite);
-
-    m_addStyleSheets();
 }
 
 void MainWindow::m_displayToolBar()
@@ -161,6 +167,7 @@ void MainWindow::m_displayDock()
     addDockWidget(Qt::LeftDockWidgetArea, w_dCaserneTree);
 
     w_wContCaserneTree = new QWidget;
+        w_wContCaserneTree->setContentsMargins(0,0,0,0);
     w_dCaserneTree->setWidget(w_wContCaserneTree);
 
     w_modCaserneTree = new QStandardItemModel;
@@ -176,8 +183,27 @@ void MainWindow::m_displayDock()
         w_tvCaserneTree->setModel(w_modCaserneTree);
 
     w_vlMainCaserneTree = new QVBoxLayout;
-    w_vlMainCaserneTree->addWidget(w_tvCaserneTree);
+        w_vlMainCaserneTree->setContentsMargins(0,0,0,0);
+        w_vlMainCaserneTree->addWidget(w_tvCaserneTree);
     w_wContCaserneTree->setLayout(w_vlMainCaserneTree);
+}
+
+void MainWindow::m_applyStyle()
+{
+    if (QFile::exists("styles/style.css"))
+    {
+        QFile styleSheet("styles/style.css");
+        if (styleSheet.open(QIODevice::ReadOnly))
+        {
+            QTextStream in(&styleSheet);
+            QString style = in.readAll();
+            qApp->setStyleSheet(style);
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, "Erreur", "La feuille de style est introuvable <i>('styles/style.css')</i>,<br />Le style de base sera appliqué.");
+    }
 }
 
 
@@ -185,6 +211,11 @@ void MainWindow::m_displayDock()
 
 // Slots ===
  // Gestion du MenuBar et de la ToolBar
+void MainWindow::sl_settings()
+{
+    settingsWindow = new MGSettings();
+}
+
 void MainWindow::sl_showFullScreen()
 {
     if (w_aFullScreen->isChecked())
@@ -257,40 +288,12 @@ void MainWindow::sl_createStaff()
     staffWindow->openCreate();
 }
 
-
-
-// Méthode Graphique ===
-void MainWindow::m_addStyleSheets()
+void MainWindow::sl_editStaff()
 {
-    // MenuBar
-    w_mbMenuBar->setStyleSheet("QMenuBar {background-color:#2d2d30;}\
-                                QMenuBar::item {background:transparent; color:#c1c1c1;}\
-                                QMenuBar::item:selected {background:#d47e18; color:#f0f0f0;}");
+    staffWindow->openEdit();
+}
 
-    // Menus, ToolBar
-    setStyleSheet("QMenu {background-color:#2d2d30; border:1px solid #d47e18;}"
-                  "QMenu::item {background:transparent; color:#c1c1c1;}"
-                  "QMenu::item:selected {color:#d47e18;}"
-                  "QMenu::separator {background:#d47e18; margin: 3px 5px 3px 5px; height:1px;}"
-                   /* ToolBar */
-                  "QToolBar {border:0; border-bottom:1px solid #404040; background-color:#2d2d30;}"
-                  "QToolBar::separator {background:#B8B8B8; margin: 4px 7px 4px 7px; width:1px;}"
-                  "QToolButton {border:0; margin-right:2px; margin-bottom:3px;}"
-                  "QToolTip {color:#e7e7e7; border:1px solid #d47e18; background-color:#2d2d30;}"
-                   /* Fenêtre */
-                  "QMainWindow, QDialog {background-color:#28282b;}"
-                  "QLabel {color:#c1c1c1;}"
-                   /* Dock */
-                  "QDockWidget {background:#1f1f22; color:#B8B8B8;}"
-                  "QDockWidget::close-button:hover, QDockWidget::float-button:hover {border:0;}"
-                   /* ListView */
-                  "QTreeView {background-color:#252526; border:1px solid #404040; color:#DBDBDB;}"
-                  "QTreeView::item:selected {background: #404040; border:0; color:#B8B8B8;}"
-                   /* PushButton */
-                  "QPushButton {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6B6B6B, stop:1 #5E5E5E); border:1px solid #404040;"
-                               "height:20px;}"
-                  "QPushButton:hover {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #5E5E5E, stop:1 #424242);"
-                                     "border:1px solid #404040; height:20px;}"
-                  "QPushButton:pressed {background-color:qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #424242, stop:1 #6B6B6B);"
-                                       "border:1px solid #404040; height:20px;}");
+void MainWindow::sl_deleteStaff()
+{
+    staffWindow->openDelete();
 }
