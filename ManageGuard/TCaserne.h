@@ -4,20 +4,24 @@
 #include "QObject"
 #include <Qvector>
 #include <QVariant>
+#include <QDebug>
 
 class TCaserne
 {
     public:
-        TCaserne();
+        TCaserne();     //Constructeur
         TCaserne(QString name, QString chef);       //Constructeur
-        QString m_getName();
+        QString m_getName();        //Renvoit le nom
         static void m_initClasseSystem ();      //Prépare la classe à être sérialiser
-        void m_set(QString name, QString chef);
+<<<<<<< HEAD
+        void m_set(QString chef);     //Edite les paramètres
+=======
+        void m_set(QString name, QString chef);     //Edite les paramètres
+>>>>>>> 6a5791becc042be516474f4a00e26ff93dacf771
 
     private:
         QString a_name;     //Contient le nom de la caserne
         QString a_chef;     //Contient le nom du chef de la caserne
-        QVector<QString> a_listMembers;     //Contient la liste des membres de la caserne
 
         friend QDataStream & operator << (QDataStream &, const TCaserne &);     //Definit l'opérateur << comme ami
         friend QDataStream & operator >> (QDataStream &, TCaserne &);     //Definit l'opérateur >> comme ami

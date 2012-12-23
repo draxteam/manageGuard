@@ -1,55 +1,51 @@
 #include "Member.h"
 
-Member::Member(std::string nom, std::string prenom, int grade)
+Member::Member(QString name, QString firstName, int date, int grade, bool pictures)
 {
-    a_nom = nom;
-    a_prenom = prenom;
-    a_grade = grade;
+    a_member = new TMember(name, firstName, date, grade, pictures);
+    a_member->m_initClasseSystem();
 
-    std::string extension = ".per";
-    a_nameFile = a_nom + extension;
-
-    a_create = false;
+    QString extension = ".memb";
+    a_file = "Saves/Membres/" + name + firstName[0] + extension;
+    a_filePictures = "Saves/Membres/Pictures/" + name + firstName[0] + ".png";
 }
 
-Member::Member(std::string nom)
+Member::Member(QString name, QString firstName)
 {
-    a_nom = nom;
-    std::string extension = ".per";
-    a_nameFile = a_nom + extension;
+    QString extension = ".memb";
+    a_file = "Saves/Membres/" + name + firstName[0] + extension;
+    a_filePictures = "Saves/Membres/Pictures/" + name + firstName[0] + ".png";
+}
 
-    a_fileI.open(a_nameFile.c_str(), std::ios::out | std::ios::binary);
-    a_fileI.read((char *)&a_prenom, sizeof(std::string));
-    a_fileI.read((char *)&a_grade, sizeof(int));
-    a_fileI.close();
-
-    a_create = true;
+Member::~Member()
+{
+    QFile file(a_file);
+    file.remove();
+    QString cheminPictures(a_filePictures);
+    QFile filePictures (cheminPictures);
+    filePictures.remove();
 }
 
 void Member::m_create()
 {
-    if(a_create == false)
-    {
-        a_fileO.open(a_nameFile.c_str(), std::ios::out | std::ios::binary);
-        a_fileO.write ((char *)&a_nom, sizeof(std::string));
-        a_fileO.write ((char *)&a_prenom, sizeof(std::string));
-        a_fileO.write ((char *)&a_grade, sizeof(int));
-        a_fileO.close();
-
-        a_create = true;
-    }
+    QFile file(a_file);
+    file.open(QIODevice::WriteOnly);
+    QDataStream out(&file);
+    out << *a_member;
+    file.close();
 }
 
-void Member::m_setting(int grade)
+void Member::m_getBack()
 {
-    if(a_create == true)
-    {
-        a_grade = grade;
+    a_member = new TMember();
+    QFile file(a_file);
+    file.open(QIODevice::ReadOnly);
+    QDataStream in(&file);
+    in >> *a_member;
+    file.close();
+}
 
-        a_fileO.open(a_nameFile.c_str(), std::ios::out | std::ios::binary);
-        a_fileO.write ((char *)&a_grade, sizeof(std::string));
-        a_fileO.close();
-
-        a_create = true;
-    }
+void Member::m_set(int date, int grade, bool pictures)
+{
+    a_member->m_set(date, grade, pictures);
 }

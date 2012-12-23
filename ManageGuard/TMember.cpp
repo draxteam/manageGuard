@@ -1,36 +1,58 @@
 #include "TMember.h"
 
-TMember::TMember (std::string name, bool statut1, bool statut2, bool statut3, bool statut4)
+TMember::TMember ()
 {
-    a_name = name;
-    a_statut1 = statut1;
-    a_statut2 = statut2;
-    a_statut3 = statut3;
-    a_statut4 = statut4;
+
 }
 
-std::string TMember::m_getName()
+TMember::TMember (QString name, QString firstName, int date, int grade, bool pictures)
+{
+    a_name = name;
+    a_firstName = firstName;
+    a_date = date;
+    a_grade = grade;
+    a_pictures = pictures;
+}
+
+QString TMember::m_getName()
 {
     return a_name;
 }
 
-bool TMember::m_getStatut1()
+QString TMember::m_getFirstName()
 {
-    return a_statut1;
+    return a_firstName;
 }
 
-bool TMember::m_getStatut2()
+void TMember::m_initClasseSystem()
 {
-    return a_statut2;
+    qRegisterMetaTypeStreamOperators<TMember>("TMember");
+    qMetaTypeId<TMember>();
 }
 
-bool TMember::m_getStatut3()
+QDataStream & operator << (QDataStream & out, const TMember & Valeur)
 {
-    return a_statut3;
+    out << Valeur.a_name
+        << Valeur.a_firstName
+        << Valeur.a_date
+        << Valeur.a_grade;
+
+    return out;
+}
+QDataStream & operator >> (QDataStream & in, TMember &Valeur)
+{
+    in >> Valeur.a_name;
+    in >> Valeur.a_firstName;
+    in >> Valeur.a_date;
+    in >> Valeur.a_grade;
+
+    return in;
 }
 
-bool TMember::m_getStatut4()
+void TMember::m_set(int date, int grade, bool pictures)
 {
-    return a_statut4;
+    a_date = date;
+    a_grade = grade;
+    a_pictures = pictures;
 }
 

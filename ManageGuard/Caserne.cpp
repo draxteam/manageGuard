@@ -40,9 +40,9 @@ void Caserne::m_getBack()
     file.close();
 }
 
-void Caserne::m_set(QString name, QString chef)
+void Caserne::m_set(QString chef)
 {
-    a_caserne->m_set(name, chef);
+    a_caserne->m_set(chef);
 }
 
 /*
