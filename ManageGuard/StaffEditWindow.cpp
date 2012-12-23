@@ -4,7 +4,7 @@
 
 StaffEditWindow::StaffEditWindow()
 {
-    m_addStyleSheets();
+    m_applyStyle();
 }
 
 // Création des fenêtres
@@ -166,24 +166,13 @@ void StaffEditWindow::sl_delRowAssign(int itemNb)
 
 
 // Méthode Graphique
-void StaffEditWindow::m_addStyleSheets()
+void StaffEditWindow::m_applyStyle()
 {
-    setStyleSheet("QDialog {background-color:#28282b;}"
-                  "QLineEdit {background-color:#1f1f22; border:0;}"
-                  "QLineEdit:focus {background-color:#d47e18; border:0; color:#f0f0f0;}"
-                  "QWidget {color:#B8B8B8;}"
-                  "QPushButton {background-color:#1f1f22; border:0; height:20px; color:#c1c1c1;}"
-                  "QPushButton:hover {background-color:#d47e18; border:0; color:#f0f0f0;}"
-                  "QPushButton:pressed {background-color:#d47e18; border:0; color:#f0f0f0;}"
-                  "QComboBox {background-color:#1f1f22; border:0;}"
-                  "QComboBox QAbstractItemView {border:0; background-color:#28282b; selection-background-color:#d47e18; selection-color:#f0f0f0;}"
-                  "QString {background-color:#B8B8B8; border:1px solid #404040;}"
-                  "QScrollBar:vertical {background-color:#1f1f22; width: 15px; margin: 10px 0 10px 0;}"
-                  "QScrollBar::handle:vertical {background-color:#d47e18; margin: 3px;}"
-                  "QScrollBar::add-line:vertical {border:0; background-color: #1f1f22; height: 10px; subcontrol-position: bottom;"
-                                                 "subcontrol-origin: margin;}"
-                  "QScrollBar::sub-line:vertical {border:0; background-color: #1f1f22; height: 10px; subcontrol-position: top;"
-                                                 "subcontrol-origin: margin;}"
-                  "QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {border: 0; width: 4px; height: 2px; background: #d47e18;}"
-                  "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}");
+    QFile styleSheet("styles/style.css");
+    if (styleSheet.open(QIODevice::ReadOnly))
+    {
+        QTextStream in(&styleSheet);
+        QString style = in.readAll();
+        qApp->setStyleSheet(style);
+    }
 }

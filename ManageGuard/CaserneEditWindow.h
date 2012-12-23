@@ -22,7 +22,7 @@ public:
     void openDelete();
 
 private:
-    void m_addStyleSheets();
+    void m_applyStyle();
     void m_listerCasernes();
 
     QFormLayout *w_flMainCaserneWindow;

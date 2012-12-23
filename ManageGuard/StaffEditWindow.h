@@ -21,7 +21,7 @@ private slots:
     void sl_delRowAssign(int itemNb);
 
 private:
-    void m_addStyleSheets();
+    void m_applyStyle();
 
     // Fenêtre base
     QFormLayout *w_flMainStaffWindow;
