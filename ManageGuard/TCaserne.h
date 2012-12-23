@@ -13,11 +13,7 @@ class TCaserne
         TCaserne(QString name, QString chef);       //Constructeur
         QString m_getName();        //Renvoit le nom
         static void m_initClasseSystem ();      //Prépare la classe à être sérialiser
-<<<<<<< HEAD
         void m_set(QString chef);     //Edite les paramètres
-=======
-        void m_set(QString name, QString chef);     //Edite les paramètres
->>>>>>> 6a5791becc042be516474f4a00e26ff93dacf771
 
     private:
         QString a_name;     //Contient le nom de la caserne

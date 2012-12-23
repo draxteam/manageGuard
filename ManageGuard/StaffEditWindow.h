@@ -33,6 +33,7 @@ private slots:
 
 private:
     void m_applyStyle();
+    void m_listerMembers();
 
     // Fenêtre base
     QFormLayout *w_flMainStaffWindow;
