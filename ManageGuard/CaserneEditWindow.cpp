@@ -51,7 +51,7 @@ void CaserneEditWindow::openLoad()
         {
             w_cbCaserneName->addItem(a_listCaserne[i]);
         }
-        connect(w_cbCaserneName, SIGNAL(editTextChanged(const QString &)), this, SLOT(sl_backupName(const QString &)));
+        connect(w_cbCaserneName, SIGNAL(currentIndexChanged(QString)), this, SLOT(sl_backupName(const QString)));
     w_pbOk = new QPushButton("Ouvrir");
         connect(w_pbOk, SIGNAL(clicked()), this, SLOT(sl_loadCaserne()));
         connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
@@ -80,8 +80,6 @@ void CaserneEditWindow::openEdit()
 {
     if(a_existCaserne == true)
     {
-        w_leCaserneName = new QLineEdit;
-            connect(w_leCaserneName, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupName(const QString &)));
         w_leCaserneChief = new QLineEdit;
             connect(w_leCaserneChief, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupChef(const QString &)));
         w_pbOk = new QPushButton("Editer");
@@ -95,7 +93,6 @@ void CaserneEditWindow::openEdit()
         w_hlCaserneWindow->addWidget(w_pbCancel);
 
         w_flMainCaserneWindow = new QFormLayout;
-        w_flMainCaserneWindow->addRow("Nom de la caserne", w_leCaserneName);
         w_flMainCaserneWindow->addRow("Nom du chef", w_leCaserneChief);
         w_flMainCaserneWindow->addRow(w_hlCaserneWindow);
 
@@ -135,6 +132,7 @@ void CaserneEditWindow::openDelete()
     {
         w_lDelete = new QLabel("Attention vous êtes sur le point de supprimer la caserne!");
         w_pbOk = new QPushButton("Supprimer");
+        connect(w_pbOk, SIGNAL(clicked()), this, SLOT(sl_deleteCaserne()));
             connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
         w_pbCancel = new QPushButton("Annuler");
             connect(w_pbCancel, SIGNAL(clicked()), this, SLOT(accept()));
