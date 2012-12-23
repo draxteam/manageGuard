@@ -4,15 +4,16 @@
 #include "QObject"
 #include <Qvector>
 #include <QVariant>
+#include <QDebug>
 
 class TCaserne
 {
     public:
-        TCaserne();
+        TCaserne();     //Constructeur
         TCaserne(QString name, QString chef);       //Constructeur
-        QString m_getName();
+        QString m_getName();        //Renvoit le nom
         static void m_initClasseSystem ();      //Prépare la classe à être sérialiser
-        void m_set(QString name, QString chef);
+        void m_set(QString name, QString chef);     //Edite les paramètres
 
     private:
         QString a_name;     //Contient le nom de la caserne
