@@ -187,3 +187,103 @@ void StaffEditWindow::m_addStyleSheets()
                   "QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {border: 0; width: 4px; height: 2px; background: #d47e18;}"
                   "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {background: none;}");
 }
+
+void StaffEditWindow::sl_createMember()
+{
+    a_member = new Member(a_nameTemp, a_firstNameTemp, a_dateTemp, a_gradeTemp, a_picturesTemp);
+    a_member->m_create();
+
+    if(a_picturesTemp == true)
+    {
+        QFile::copy (a_cheminPictureTemp, "Saves/Membres/Pictures" + a_nameTemp + a_firstNameTemp[0] + ".png");
+    }
+
+    a_existMember = true;
+}
+
+void StaffEditWindow::sl_loadMember()
+{
+    a_member = new Member(a_nameTemp, a_firstNameTemp);
+    a_member->m_getBack();
+
+    a_existMember = true;
+}
+
+void StaffEditWindow::sl_editMember()
+{
+    a_member->m_set(a_dateTemp, a_gradeTemp, a_picturesTemp);
+
+    if(a_picturesTemp == true)
+    {
+        QFile::copy (a_cheminPictureTemp, "Saves/Membres/Pictures" + a_nameTemp + a_firstNameTemp[0] + ".png");
+    }
+
+    else
+    {
+        QFile filePictures ("Saves/Membres/Pictures" + a_nameTemp + a_firstNameTemp[0] + ".png");
+        filePictures.remove();
+    }
+}
+
+void StaffEditWindow::sl_deleteMember()
+{
+    a_member->~Member();
+
+    a_existMember = false;
+}
+
+void StaffEditWindow::sl_backupName(QString name)
+{
+    a_nameTemp = name;
+}
+
+void StaffEditWindow::sl_backupFirstName(QString firstName)
+{
+    a_firstNameTemp = firstName;
+}
+
+void StaffEditWindow::sl_backupDate(int date)
+{
+    a_dateTemp = date;
+}
+
+void StaffEditWindow::sl_backupGrade(int grade)
+{
+    a_gradeTemp = grade;
+}
+
+void StaffEditWindow::sl_backupPictures(QString file)
+{
+    if(file != "")
+    {
+        a_picturesTemp = true;
+        a_cheminPictureTemp = file;
+    }
+
+    else
+    {
+        a_picturesTemp = false;
+    }
+
+}
+
+void StaffEditWindow::m_listerMembers()
+{
+    QStringList listFilter;
+    listFilter << "*.memb";
+
+    a_compteur = new QDirIterator(QDir::currentPath() + "/Saves/Membres/", listFilter, QDir::Files | QDir::NoSymLinks);
+
+    while(a_compteur->hasNext())
+     {
+        a_compteur->next();
+        QString chemin = "Saves/Membres/" + a_compteur->fileName();
+        QFile file(chemin);
+        file.open(QIODevice::ReadOnly);
+        QDataStream in(&file);
+        in >> *a_memberTemp;
+        a_nameTemp = a_memberTemp->m_getName();
+        a_firstNameTemp = a_memberTemp->m_getFirstName();
+        a_listMember.push_back(a_nameTemp + a_firstNameTemp[0]);
+     }
+}

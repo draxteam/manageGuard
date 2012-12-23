@@ -13,12 +13,11 @@ class TCaserne
         TCaserne(QString name, QString chef);       //Constructeur
         QString m_getName();        //Renvoit le nom
         static void m_initClasseSystem ();      //Prépare la classe à être sérialiser
-        void m_set(QString name, QString chef);     //Edite les paramètres
+        void m_set(QString chef);     //Edite les paramètres
 
     private:
         QString a_name;     //Contient le nom de la caserne
         QString a_chef;     //Contient le nom du chef de la caserne
-        QVector<QString> a_listMembers;     //Contient la liste des membres de la caserne
 
         friend QDataStream & operator << (QDataStream &, const TCaserne &);     //Definit l'opérateur << comme ami
         friend QDataStream & operator >> (QDataStream &, TCaserne &);     //Definit l'opérateur >> comme ami

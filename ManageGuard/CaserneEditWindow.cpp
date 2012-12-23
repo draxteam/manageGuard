@@ -99,7 +99,6 @@ void CaserneEditWindow::openEdit()
         setLayout(w_flMainCaserneWindow);
         this->exec();
 
-        w_leCaserneName->~QLineEdit();
         w_leCaserneChief->~QLineEdit();
         w_pbOk->~QPushButton();
         w_pbCancel->~QPushButton();
@@ -215,7 +214,7 @@ void CaserneEditWindow::sl_loadCaserne()
 
 void CaserneEditWindow::sl_editCaserne()
 {
-    a_caserne->m_set(a_nameTemp, a_chefTemp);
+    a_caserne->m_set(a_chefTemp);
 }
 
 void CaserneEditWindow::sl_deleteCaserne()

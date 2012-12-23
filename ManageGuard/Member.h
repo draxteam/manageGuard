@@ -2,25 +2,25 @@
 #define MEMBER_H
 
 #include "QObject"
-#include <iostream>
-#include <fstream>
+#include "QCoreApplication"
+#include "TMember.h"
+#include <QFile>
+#include <QDebug>
 
 class Member
 {
     public:
-       Member(std::string nom, std::string prenom, int grade);       //Constructeur
-       Member(std::string nom);
+       Member(QString name, QString firstName, int date, int grade, bool pictures);       //Constructeur
+       Member(QString name, QString firstName);
+       ~Member();
        void m_create();
-       void m_setting(int grade);
+       void m_getBack();
+       void m_set(int date, int grade, bool pictures);
 
     private:
-       std::string a_nom;
-       std::string a_prenom;
-       int a_grade;
-       std::string a_nameFile;
-       bool a_create;
-       std::ofstream a_fileO;
-       std::ifstream a_fileI;
+       TMember *a_member;
+       QString a_file;
+       QString a_filePictures;
 };
 
 #endif // MEMBER_H
