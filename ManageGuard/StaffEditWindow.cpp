@@ -184,7 +184,7 @@ void StaffEditWindow::sl_createMember()
 
     if(a_picturesTemp == true)
     {
-        QFile::copy (a_cheminPictureTemp, "Saves/Membres/Pictures" + a_nameTemp + a_firstNameTemp[0] + ".png");
+        QFile::copy (a_cheminPictureTemp, "Saves/Membres/Pictures/" + a_nameTemp + a_firstNameTemp[0] + ".jpg");
     }
 
     a_existMember = true;
@@ -204,12 +204,12 @@ void StaffEditWindow::sl_editMember()
 
     if(a_picturesTemp == true)
     {
-        QFile::copy (a_cheminPictureTemp, "Saves/Membres/Pictures" + a_nameTemp + a_firstNameTemp[0] + ".png");
+        QFile::copy (a_cheminPictureTemp, "Saves/Membres/Pictures/" + a_nameTemp + a_firstNameTemp[0] + ".jpg");
     }
 
     else
     {
-        QFile filePictures ("Saves/Membres/Pictures" + a_nameTemp + a_firstNameTemp[0] + ".png");
+        QFile filePictures ("Saves/Membres/Pictures/" + a_nameTemp + a_firstNameTemp[0] + ".jpg");
         filePictures.remove();
     }
 }

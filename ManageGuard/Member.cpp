@@ -7,20 +7,21 @@ Member::Member(QString name, QString firstName, int date, int grade, bool pictur
 
     QString extension = ".memb";
     a_file = "Saves/Membres/" + name + firstName[0] + extension;
-    a_filePictures = "Saves/Membres/Pictures/" + name + firstName[0] + ".png";
+    a_filePictures = "Saves/Membres/Pictures/" + name + firstName[0] + ".jpg";
 }
 
 Member::Member(QString name, QString firstName)
 {
     QString extension = ".memb";
     a_file = "Saves/Membres/" + name + firstName[0] + extension;
-    a_filePictures = "Saves/Membres/Pictures/" + name + firstName[0] + ".png";
+    a_filePictures = "Saves/Membres/Pictures/" + name + firstName[0] + ".jpg";
 }
 
 Member::~Member()
 {
     QFile file(a_file);
     file.remove();
+
     QString cheminPictures(a_filePictures);
     QFile filePictures (cheminPictures);
     filePictures.remove();

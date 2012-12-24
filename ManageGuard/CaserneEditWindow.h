@@ -43,6 +43,11 @@ private:
 
     QString a_nameTemp;
     QString a_chefTemp;
+    QString a_adressTemp;
+    int a_zipCodeTemp;
+    QString a_cityTemp;
+    bool a_picturesTemp;
+    QString a_cheminPictureTemp;
     QList <QString> a_listCaserne;
     QDirIterator *a_compteur;
     TCaserne *a_caserneTemp;
@@ -59,6 +64,9 @@ public slots:
     void sl_openImg();
     void sl_backupName(QString name);
     void sl_backupChef(QString chef);
+    void sl_backupAdress(QString adresse);
+    void sl_backupZipCode(QString zipcode);
+    void sl_backupCity(QString city);
 
 };
 

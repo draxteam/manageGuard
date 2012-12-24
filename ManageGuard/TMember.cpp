@@ -35,7 +35,8 @@ QDataStream & operator << (QDataStream & out, const TMember & Valeur)
     out << Valeur.a_name
         << Valeur.a_firstName
         << Valeur.a_date
-        << Valeur.a_grade;
+        << Valeur.a_grade
+        << Valeur.a_pictures;
 
     return out;
 }
@@ -45,6 +46,7 @@ QDataStream & operator >> (QDataStream & in, TMember &Valeur)
     in >> Valeur.a_firstName;
     in >> Valeur.a_date;
     in >> Valeur.a_grade;
+    in >> Valeur.a_pictures;
 
     return in;
 }

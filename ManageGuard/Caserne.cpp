@@ -1,24 +1,30 @@
 #include "Caserne.h"
 
-Caserne::Caserne (QString name, QString chef)
+Caserne::Caserne (QString name, QString chef, QString adress, int zipCode, QString city, bool pictures)
 {    
-    a_caserne = new TCaserne(name, chef);
+    a_caserne = new TCaserne(name, chef, adress, zipCode, city, pictures);
     a_caserne->m_initClasseSystem();
 
     QString extension = ".cas";
     a_file = "Saves/Casernes/" + name + extension;
+    a_filePictures = "Saves/Casernes/Pictures/" + name + ".jpg";
 }
 
 Caserne::Caserne (QString name)
 {
     QString extension = ".cas";
     a_file = "Saves/Casernes/" + name + extension;
+    a_filePictures = "Saves/Casernes/Pictures/" + name + ".jpg";
 }
 
 Caserne::~Caserne()
 {
     QFile file(a_file);
     file.remove();
+
+    QString cheminPictures(a_filePictures);
+    QFile filePictures (cheminPictures);
+    filePictures.remove();
 }
 
 void Caserne::m_create()
@@ -40,9 +46,49 @@ void Caserne::m_getBack()
     file.close();
 }
 
-void Caserne::m_set(QString chef)
+void Caserne::m_set(QString chef, QString adress, int zipCode, QString city, bool pictures)
 {
-    a_caserne->m_set(chef);
+    a_caserne->m_set(chef, adress, zipCode, city, pictures);
+}
+
+QString Caserne::m_getChef()
+{
+    QString chef;
+    chef = a_caserne->m_getChef();
+
+    return chef;
+}
+
+QString Caserne::m_getAdress()
+{
+    QString adress;
+    adress = a_caserne->m_getAdress();
+
+    return adress;
+}
+
+int Caserne::m_getZipCode()
+{
+    int zipCode;
+    zipCode = a_caserne->m_getZipCode();
+
+    return zipCode;
+}
+
+QString Caserne::m_getCity()
+{
+    QString city;
+    city = a_caserne->m_getCity();
+
+    return city;
+}
+
+bool Caserne::m_getPictures()
+{
+    bool pictures;
+    pictures = a_caserne->m_getPictures();
+
+    return pictures;
 }
 
 /*

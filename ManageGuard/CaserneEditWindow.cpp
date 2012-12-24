@@ -20,7 +20,7 @@ void CaserneEditWindow::openCreate()
         w_hlCaserneWindow->addWidget(w_pbCancel);
 
     w_lIdentityImg = new QLabel;
-    QImage w_imgIdentity("test.jpg");
+    QImage w_imgIdentity("Saves/Casernes/Pictures/defaut.jpg");
     QImage w_imgIdentity2 = w_imgIdentity.scaled(QSize(150,150),Qt::IgnoreAspectRatio);
     w_pmIdentity = new QPixmap(QPixmap::fromImage(w_imgIdentity2));
         w_lIdentityImg->setPixmap(*w_pmIdentity);
@@ -34,8 +34,11 @@ void CaserneEditWindow::openCreate()
     w_leCaserneChief = new QLineEdit;
         connect(w_leCaserneChief, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupChef(const QString &)));
     w_leAddress = new QLineEdit;
+        connect(w_leAddress, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupAdress(const QString &)));
     w_leZipCode = new QLineEdit;
+        connect(w_leZipCode, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupZipCode(const QString &)));
     w_leCity = new QLineEdit;
+        connect(w_leCity, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupCity(const QString &)));
 
     w_flMainCaserneWindow = new QFormLayout;
         w_flMainCaserneWindow->addRow("Nom de la caserne", w_leCaserneName);
@@ -85,8 +88,16 @@ void CaserneEditWindow::openEdit()
             w_hlCaserneWindow->addWidget(w_pbCancel);
 
         w_lIdentityImg = new QLabel;
-        QImage w_imgIdentity("test.jpg");
-        QImage w_imgIdentity2 = w_imgIdentity.scaled(QSize(150,150),Qt::IgnoreAspectRatio);
+        QImage *w_imgIdentity;
+        if(a_picturesTemp == true)
+        {
+            w_imgIdentity = new QImage("Saves/Casernes/Pictures/" + a_nameTemp + ".jpg");
+        }
+        else
+        {
+            w_imgIdentity = new QImage("Saves/Casernes/Pictures/defaut.jpg");
+        }
+        QImage w_imgIdentity2 = w_imgIdentity->scaled(QSize(150,150),Qt::IgnoreAspectRatio);
         w_pmIdentity = new QPixmap(QPixmap::fromImage(w_imgIdentity2));
             w_lIdentityImg->setPixmap(*w_pmIdentity);
         w_pbLoadImg = new QPushButton("...", w_lIdentityImg);
@@ -97,11 +108,14 @@ void CaserneEditWindow::openEdit()
         w_leCaserneName = new QLineEdit(a_nameTemp);
             w_leCaserneName->setReadOnly(true);
             connect(w_leCaserneName, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupName(const QString &)));
-        w_leCaserneChief = new QLineEdit();
+        w_leCaserneChief = new QLineEdit(a_chefTemp);
             connect(w_leCaserneChief, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupChef(const QString &)));
-        w_leAddress = new QLineEdit;
-        w_leZipCode = new QLineEdit;
-        w_leCity = new QLineEdit;
+        w_leAddress = new QLineEdit(a_adressTemp);
+            connect(w_leAddress, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupAdress(const QString &)));
+        w_leZipCode = new QLineEdit(QString::number(a_zipCodeTemp));
+            connect(w_leZipCode, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupZipCode(const QString &)));
+        w_leCity = new QLineEdit(a_cityTemp);
+            connect(w_leCity, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupCity(const QString &)));
         w_flMainCaserneWindow = new QFormLayout;
             w_flMainCaserneWindow->addRow("Nom de la caserne", w_leCaserneName);
             w_flMainCaserneWindow->addRow("Nom du chef de centre", w_leCaserneChief);
@@ -254,8 +268,13 @@ void CaserneEditWindow::m_applyStyle()
 
 void CaserneEditWindow::sl_createCaserne()
 {
-    a_caserne = new Caserne(a_nameTemp, a_chefTemp);
+    a_caserne = new Caserne(a_nameTemp, a_chefTemp, a_adressTemp, a_zipCodeTemp, a_cityTemp, a_picturesTemp);
     a_caserne->m_create();
+
+    if(a_picturesTemp == true)
+    {
+        QFile::copy (a_cheminPictureTemp, "Saves/Casernes/Pictures/" + a_nameTemp + ".jpg");
+    }
 
     a_existCaserne = true;
 }
@@ -265,12 +284,29 @@ void CaserneEditWindow::sl_loadCaserne()
     a_caserne = new Caserne(a_nameTemp);
     a_caserne->m_getBack();
 
+    a_chefTemp = a_caserne->m_getChef();
+    a_adressTemp = a_caserne->m_getAdress();
+    a_zipCodeTemp = a_caserne->m_getZipCode();
+    a_cityTemp = a_caserne->m_getCity();
+    a_picturesTemp = a_caserne->m_getPictures();
+
     a_existCaserne = true;
 }
 
 void CaserneEditWindow::sl_editCaserne()
 {
-    a_caserne->m_set(a_chefTemp);
+    a_caserne->m_set(a_chefTemp, a_adressTemp, a_zipCodeTemp, a_cityTemp, a_picturesTemp);
+
+    if(a_picturesTemp == true)
+    {
+        QFile::copy (a_cheminPictureTemp, "Saves/Casernes/Pictures/" + a_nameTemp + ".jpg");
+    }
+
+    else
+    {
+        QFile filePictures ("Saves/Casernes/Pictures/" + a_nameTemp + ".jpg");
+        filePictures.remove();
+    }
 }
 
 void CaserneEditWindow::sl_deleteCaserne()
@@ -288,6 +324,21 @@ void CaserneEditWindow::sl_backupName(QString name)
 void CaserneEditWindow::sl_backupChef(QString chef)
 {
     a_chefTemp = chef;
+}
+
+void CaserneEditWindow::sl_backupAdress(QString adress)
+{
+    a_adressTemp = adress;
+}
+
+void CaserneEditWindow::sl_backupZipCode(QString zipCode)
+{
+    a_zipCodeTemp = zipCode.toInt();
+}
+
+void CaserneEditWindow::sl_backupCity(QString city)
+{
+    a_cityTemp = city;
 }
 
 void CaserneEditWindow::m_listerCasernes()
@@ -312,11 +363,19 @@ void CaserneEditWindow::m_listerCasernes()
 
 void CaserneEditWindow::sl_openImg()
 {
-    QString a_img = QFileDialog::getOpenFileName(this, "Ouvrir une image", QString(), "Images (*.png *.jpg *.jpeg)");
+    QString a_img = QFileDialog::getOpenFileName(this, "Ouvrir une image", QString(), "Images (*.jpg *.jpeg)");
     if (a_img != "")
     {
         QImage w_img(a_img);
         QImage w_img2 = w_img.scaled(QSize(150,150),Qt::IgnoreAspectRatio);
         w_lIdentityImg->setPixmap(QPixmap::fromImage(w_img2));
+
+        a_picturesTemp = true;
+        a_cheminPictureTemp = a_img;
+    }
+
+    else
+    {
+        a_picturesTemp = false;
     }
 }
