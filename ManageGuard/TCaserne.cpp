@@ -14,6 +14,15 @@ TCaserne::TCaserne (QString name, QString chef, QString adress, int zipCode, QSt
     a_pictures = pictures;
 }
 
+void TCaserne::m_set(QString chef, QString adress, int zipCode, QString city, bool pictures)
+{
+    a_chef = chef;
+    a_adress = adress;
+    a_zipCode = zipCode;
+    a_city = city;
+    a_pictures = pictures;
+}
+
 QString TCaserne::m_getName()
 {
     return a_name;
@@ -71,13 +80,4 @@ QDataStream & operator >> (QDataStream & in, TCaserne &Valeur)
     in >> Valeur.a_pictures;
 
     return in;
-}
-
-void TCaserne::m_set(QString chef, QString adress, int zipCode, QString city, bool pictures)
-{
-    a_chef = chef;
-    a_adress = adress;
-    a_zipCode = zipCode;
-    a_city = city;
-    a_pictures = pictures;
 }

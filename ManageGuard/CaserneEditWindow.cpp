@@ -346,6 +346,8 @@ void CaserneEditWindow::m_listerCasernes()
     QStringList listFilter;
     listFilter << "*.cas";
 
+    a_listCaserne.clear();
+
     a_compteur = new QDirIterator(QDir::currentPath() + "/Saves/Casernes/", listFilter, QDir::Files | QDir::NoSymLinks);
 
     while(a_compteur->hasNext())
