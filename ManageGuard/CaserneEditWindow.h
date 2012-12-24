@@ -29,10 +29,17 @@ private:
     QHBoxLayout *w_hlCaserneWindow;
     QLineEdit *w_leCaserneName;
     QLineEdit *w_leCaserneChief;
+    QLineEdit *w_leAddress;
+    QLineEdit *w_leZipCode;
+    QLineEdit *w_leCity;
     QComboBox *w_cbCaserneName;
     QLabel *w_lDelete;
     QPushButton *w_pbOk;
     QPushButton *w_pbCancel;
+    QLabel *w_lIdentityImg;
+    QPixmap *w_pmIdentity;
+    QPushButton *w_pbLoadImg;
+    QHBoxLayout *w_hlIdentity;
 
     QString a_nameTemp;
     QString a_chefTemp;
@@ -41,6 +48,7 @@ private:
     TCaserne *a_caserneTemp;
     Caserne *a_caserne;
     bool a_existCaserne;
+    bool a_editMode;
 
 
 public slots:
@@ -48,6 +56,7 @@ public slots:
     void sl_loadCaserne();
     void sl_editCaserne();
     void sl_deleteCaserne();
+    void sl_openImg();
     void sl_backupName(QString name);
     void sl_backupChef(QString chef);
 

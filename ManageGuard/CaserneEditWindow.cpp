@@ -10,118 +10,135 @@ CaserneEditWindow::CaserneEditWindow()
 // Création des fenêtres
 void CaserneEditWindow::openCreate()
 {
-    w_leCaserneName = new QLineEdit;
-        connect(w_leCaserneName, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupName(const QString &)));
-    w_leCaserneChief = new QLineEdit;
-        connect(w_leCaserneChief, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupChef(const QString &)));
     w_pbOk = new QPushButton("Créer");
         connect(w_pbOk, SIGNAL(clicked()), this, SLOT(sl_createCaserne()));
         connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
     w_pbCancel = new QPushButton("Annuler");
         connect(w_pbCancel, SIGNAL(clicked()), this, SLOT(accept()));
-
     w_hlCaserneWindow = new QHBoxLayout;
-    w_hlCaserneWindow->addWidget(w_pbOk);
-    w_hlCaserneWindow->addWidget(w_pbCancel);
+        w_hlCaserneWindow->addWidget(w_pbOk);
+        w_hlCaserneWindow->addWidget(w_pbCancel);
+
+    w_lIdentityImg = new QLabel;
+    QImage w_imgIdentity("test.jpg");
+    QImage w_imgIdentity2 = w_imgIdentity.scaled(QSize(150,150),Qt::IgnoreAspectRatio);
+    w_pmIdentity = new QPixmap(QPixmap::fromImage(w_imgIdentity2));
+        w_lIdentityImg->setPixmap(*w_pmIdentity);
+    w_pbLoadImg = new QPushButton("...", w_lIdentityImg);
+        w_pbLoadImg->move(0, 0);
+        w_pbLoadImg->setStyleSheet("QPushButton {width:50px;}");
+        connect(w_pbLoadImg, SIGNAL(clicked()), this, SLOT(sl_openImg()));
+
+    w_leCaserneName = new QLineEdit;
+        connect(w_leCaserneName, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupName(const QString &)));
+    w_leCaserneChief = new QLineEdit;
+        connect(w_leCaserneChief, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupChef(const QString &)));
+    w_leAddress = new QLineEdit;
+    w_leZipCode = new QLineEdit;
+    w_leCity = new QLineEdit;
 
     w_flMainCaserneWindow = new QFormLayout;
-    w_flMainCaserneWindow->addRow("Nom de la caserne", w_leCaserneName);
-    w_flMainCaserneWindow->addRow("Nom du chef", w_leCaserneChief);
-    w_flMainCaserneWindow->addRow(w_hlCaserneWindow);
+        w_flMainCaserneWindow->addRow("Nom de la caserne", w_leCaserneName);
+        w_flMainCaserneWindow->addRow("Nom du chef de centre", w_leCaserneChief);
+        w_flMainCaserneWindow->addRow("Adresse", w_leAddress);
+        w_flMainCaserneWindow->addRow("Code Postal", w_leZipCode);
+        w_flMainCaserneWindow->addRow("Ville", w_leCity);
+        w_flMainCaserneWindow->addRow(w_hlCaserneWindow);
+    w_hlIdentity = new QHBoxLayout();
+        w_hlIdentity->addWidget(w_lIdentityImg);
+        w_hlIdentity->addLayout(w_flMainCaserneWindow);
 
-    setLayout(w_flMainCaserneWindow);
+    setLayout(w_hlIdentity);
     this->exec();
 
-    w_leCaserneName->~QLineEdit();
-    w_leCaserneChief->~QLineEdit();
-    w_pbOk->~QPushButton();
-    w_pbCancel->~QPushButton();
-    w_hlCaserneWindow->~QHBoxLayout();
-    w_flMainCaserneWindow->~QFormLayout();
-
-}
-
-void CaserneEditWindow::openLoad()
-{
-    m_listerCasernes();
-    int nombre = a_listCaserne.count();
-
-    w_cbCaserneName = new QComboBox;
-        for(int i(0);i<nombre;i++)
-        {
-            w_cbCaserneName->addItem(a_listCaserne[i]);
-        }
-        connect(w_cbCaserneName, SIGNAL(currentIndexChanged(QString)), this, SLOT(sl_backupName(const QString)));
-    w_pbOk = new QPushButton("Ouvrir");
-        connect(w_pbOk, SIGNAL(clicked()), this, SLOT(sl_loadCaserne()));
-        connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
-    w_pbCancel = new QPushButton("Annuler");
-        connect(w_pbCancel, SIGNAL(clicked()), this, SLOT(accept()));
-
-    w_hlCaserneWindow = new QHBoxLayout;
-    w_hlCaserneWindow->addWidget(w_pbOk);
-    w_hlCaserneWindow->addWidget(w_pbCancel);
-
-    w_flMainCaserneWindow = new QFormLayout;
-    w_flMainCaserneWindow->addRow("Caserne à ouvrir", w_cbCaserneName);
-    w_flMainCaserneWindow->addRow(w_hlCaserneWindow);
-
-    setLayout(w_flMainCaserneWindow);
-    this->exec();
-
-    w_cbCaserneName->~QComboBox();
-    w_pbOk->~QPushButton();
-    w_pbCancel->~QPushButton();
-    w_hlCaserneWindow->~QHBoxLayout();
-    w_flMainCaserneWindow->~QFormLayout();
+    delete w_flMainCaserneWindow->labelForField(w_leCaserneName);
+    delete w_flMainCaserneWindow->labelForField(w_leCaserneChief);
+    delete w_flMainCaserneWindow->labelForField(w_leAddress);
+    delete w_flMainCaserneWindow->labelForField(w_leZipCode);
+    delete w_flMainCaserneWindow->labelForField(w_leCity);
+    delete w_pbLoadImg;
+    delete w_lIdentityImg;
+    delete w_pmIdentity;
+    delete w_leCaserneName;
+    delete w_leCaserneChief;
+    delete w_leAddress;
+    delete w_leZipCode;
+    delete w_leCity;
+    delete w_pbOk;
+    delete w_pbCancel;
+    delete w_hlCaserneWindow;
+    delete w_flMainCaserneWindow;
+    delete w_hlIdentity;
 }
 
 void CaserneEditWindow::openEdit()
 {
-    if(a_existCaserne == true)
+    if(a_existCaserne)
     {
-        w_leCaserneChief = new QLineEdit;
-            connect(w_leCaserneChief, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupChef(const QString &)));
-        w_pbOk = new QPushButton("Editer");
+        w_pbOk = new QPushButton("Modifier");
             connect(w_pbOk, SIGNAL(clicked()), this, SLOT(sl_editCaserne()));
             connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
         w_pbCancel = new QPushButton("Annuler");
             connect(w_pbCancel, SIGNAL(clicked()), this, SLOT(accept()));
-
         w_hlCaserneWindow = new QHBoxLayout;
-        w_hlCaserneWindow->addWidget(w_pbOk);
-        w_hlCaserneWindow->addWidget(w_pbCancel);
+            w_hlCaserneWindow->addWidget(w_pbOk);
+            w_hlCaserneWindow->addWidget(w_pbCancel);
 
+        w_lIdentityImg = new QLabel;
+        QImage w_imgIdentity("test.jpg");
+        QImage w_imgIdentity2 = w_imgIdentity.scaled(QSize(150,150),Qt::IgnoreAspectRatio);
+        w_pmIdentity = new QPixmap(QPixmap::fromImage(w_imgIdentity2));
+            w_lIdentityImg->setPixmap(*w_pmIdentity);
+        w_pbLoadImg = new QPushButton("...", w_lIdentityImg);
+            w_pbLoadImg->move(0, 0);
+            w_pbLoadImg->setStyleSheet("QPushButton {width:50px;}");
+            connect(w_pbLoadImg, SIGNAL(clicked()), this, SLOT(sl_openImg()));
+
+        w_leCaserneName = new QLineEdit(a_nameTemp);
+            w_leCaserneName->setReadOnly(true);
+            connect(w_leCaserneName, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupName(const QString &)));
+        w_leCaserneChief = new QLineEdit();
+            connect(w_leCaserneChief, SIGNAL(textChanged(const QString &)), this, SLOT(sl_backupChef(const QString &)));
+        w_leAddress = new QLineEdit;
+        w_leZipCode = new QLineEdit;
+        w_leCity = new QLineEdit;
         w_flMainCaserneWindow = new QFormLayout;
-        w_flMainCaserneWindow->addRow("Nom du chef", w_leCaserneChief);
-        w_flMainCaserneWindow->addRow(w_hlCaserneWindow);
+            w_flMainCaserneWindow->addRow("Nom de la caserne", w_leCaserneName);
+            w_flMainCaserneWindow->addRow("Nom du chef de centre", w_leCaserneChief);
+            w_flMainCaserneWindow->addRow("Adresse", w_leAddress);
+            w_flMainCaserneWindow->addRow("Code Postal", w_leZipCode);
+            w_flMainCaserneWindow->addRow("Ville", w_leCity);
+            w_flMainCaserneWindow->addRow(w_hlCaserneWindow);
+        w_hlIdentity = new QHBoxLayout();
+            w_hlIdentity->addWidget(w_lIdentityImg);
+            w_hlIdentity->addLayout(w_flMainCaserneWindow);
 
-        setLayout(w_flMainCaserneWindow);
+        setLayout(w_hlIdentity);
         this->exec();
 
-        w_leCaserneChief->~QLineEdit();
-        w_pbOk->~QPushButton();
-        w_pbCancel->~QPushButton();
-        w_hlCaserneWindow->~QHBoxLayout();
-        w_flMainCaserneWindow->~QFormLayout();
+        delete w_flMainCaserneWindow->labelForField(w_leCaserneName);
+        delete w_flMainCaserneWindow->labelForField(w_leCaserneChief);
+        delete w_flMainCaserneWindow->labelForField(w_leAddress);
+        delete w_flMainCaserneWindow->labelForField(w_leZipCode);
+        delete w_flMainCaserneWindow->labelForField(w_leCity);
+        delete w_pbLoadImg;
+        delete w_lIdentityImg;
+        delete w_pmIdentity;
+        delete w_leCaserneName;
+        delete w_leCaserneChief;
+        delete w_leAddress;
+        delete w_leZipCode;
+        delete w_leCity;
+        delete w_pbOk;
+        delete w_pbCancel;
+        delete w_hlCaserneWindow;
+        delete w_flMainCaserneWindow;
+        delete w_hlIdentity;
     }
-
     else
     {
-        w_lDelete = new QLabel("Vous devez d'abord ouvrir une caserne.");
-        w_pbOk = new QPushButton("Ok");
-            connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
-
-        w_flMainCaserneWindow = new QFormLayout;
-        w_flMainCaserneWindow->addRow(w_lDelete);
-        w_flMainCaserneWindow->addRow(w_pbOk);
-
-        setLayout(w_flMainCaserneWindow);
-        this->exec();
-
-        w_lDelete->~QLabel();
-        w_pbOk->~QPushButton();
-        w_flMainCaserneWindow->~QFormLayout();
+        openLoad();
+        openEdit();
     }
 }
 
@@ -147,34 +164,55 @@ void CaserneEditWindow::openDelete()
         setLayout(w_flMainCaserneWindow);
         this->exec();
 
-        w_lDelete->~QLabel();
-        w_pbOk->~QPushButton();
-        w_pbCancel->~QPushButton();
-        w_hlCaserneWindow->~QHBoxLayout();
-        w_flMainCaserneWindow->~QFormLayout();
+        delete w_flMainCaserneWindow->labelForField(w_lDelete);
+        delete w_flMainCaserneWindow->labelForField(w_hlCaserneWindow);
+        delete w_lDelete;
+        delete w_pbOk;
+        delete w_pbCancel;
+        delete w_hlCaserneWindow;
+        delete w_flMainCaserneWindow;
     }
-
     else
     {
-        w_lDelete = new QLabel("Vous devez d'abord ouvrir une caserne.");
-        w_pbOk = new QPushButton("Ok");
-            connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
-
-        w_flMainCaserneWindow = new QFormLayout;
-        w_flMainCaserneWindow->addRow(w_lDelete);
-        w_flMainCaserneWindow->addRow(w_pbOk);
-
-        setLayout(w_flMainCaserneWindow);
-        this->exec();
-
-        w_lDelete->~QLabel();
-        w_pbOk->~QPushButton();
-        w_flMainCaserneWindow->~QFormLayout();
+        openLoad();
+        openDelete();
     }
 }
 
+void CaserneEditWindow::openLoad()
+{
+    m_listerCasernes();
+    int nombre = a_listCaserne.count();
 
-// Méthode Graphique
+    w_cbCaserneName = new QComboBox;
+        for(int i(0);i<nombre;i++)
+            w_cbCaserneName->addItem(a_listCaserne[i]);
+        connect(w_cbCaserneName, SIGNAL(currentIndexChanged(QString)), this, SLOT(sl_backupName(const QString)));
+    w_pbOk = new QPushButton("Ouvrir");
+        connect(w_pbOk, SIGNAL(clicked()), this, SLOT(sl_loadCaserne()));
+        connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
+    w_pbCancel = new QPushButton("Annuler");
+        connect(w_pbCancel, SIGNAL(clicked()), this, SLOT(accept()));
+
+    w_hlCaserneWindow = new QHBoxLayout;
+    w_hlCaserneWindow->addWidget(w_pbOk);
+    w_hlCaserneWindow->addWidget(w_pbCancel);
+
+    w_flMainCaserneWindow = new QFormLayout;
+    w_flMainCaserneWindow->addRow("Caserne à ouvrir", w_cbCaserneName);
+    w_flMainCaserneWindow->addRow(w_hlCaserneWindow);
+
+    setLayout(w_flMainCaserneWindow);
+    this->exec();
+
+    delete w_flMainCaserneWindow->labelForField(w_cbCaserneName);
+    delete w_cbCaserneName;
+    delete w_pbOk;
+    delete w_pbCancel;
+    delete w_hlCaserneWindow;
+    delete w_flMainCaserneWindow;
+}
+
 void CaserneEditWindow::m_applyStyle()
 {
     QFile styleSheet("styles/style.css");
@@ -242,4 +280,15 @@ void CaserneEditWindow::m_listerCasernes()
         a_nameTemp = a_caserneTemp->m_getName();
         a_listCaserne.push_back(a_nameTemp);
      }
+}
+
+void CaserneEditWindow::sl_openImg()
+{
+    QString a_img = QFileDialog::getOpenFileName(this, "Ouvrir une image", QString(), "Images (*.png *.jpg *.jpeg)");
+    if (a_img != "")
+    {
+        QImage w_img(a_img);
+        QImage w_img2 = w_img.scaled(QSize(150,150),Qt::IgnoreAspectRatio);
+        w_lIdentityImg->setPixmap(QPixmap::fromImage(w_img2));
+    }
 }
