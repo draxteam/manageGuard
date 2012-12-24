@@ -73,7 +73,7 @@ void CaserneEditWindow::openCreate()
 
 void CaserneEditWindow::openEdit()
 {
-    if(a_existCaserne)
+    if(a_existCaserne == true)
     {
         w_pbOk = new QPushButton("Modifier");
             connect(w_pbOk, SIGNAL(clicked()), this, SLOT(sl_editCaserne()));
@@ -137,8 +137,22 @@ void CaserneEditWindow::openEdit()
     }
     else
     {
-        openLoad();
-        openEdit();
+        w_lDelete = new QLabel("Il faut d'abord ouvrir une caserne.");
+        w_pbOk = new QPushButton("Ok");
+
+        w_flMainCaserneWindow = new QFormLayout;
+        w_flMainCaserneWindow->addRow(w_lDelete);
+        w_flMainCaserneWindow->addRow(w_pbOk);
+            connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
+
+        setLayout(w_flMainCaserneWindow);
+        this->exec();
+
+        delete w_flMainCaserneWindow->labelForField(w_lDelete);
+        delete w_flMainCaserneWindow->labelForField(w_pbOk);
+        delete w_lDelete;
+        delete w_pbOk;
+        delete w_flMainCaserneWindow;
     }
 }
 
@@ -174,8 +188,22 @@ void CaserneEditWindow::openDelete()
     }
     else
     {
-        openLoad();
-        openDelete();
+        w_lDelete = new QLabel("Il faut d'abord ouvrir une caserne.");
+        w_pbOk = new QPushButton("Ok");
+
+        w_flMainCaserneWindow = new QFormLayout;
+        w_flMainCaserneWindow->addRow(w_lDelete);
+        w_flMainCaserneWindow->addRow(w_pbOk);
+            connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
+
+        setLayout(w_flMainCaserneWindow);
+        this->exec();
+
+        delete w_flMainCaserneWindow->labelForField(w_lDelete);
+        delete w_flMainCaserneWindow->labelForField(w_pbOk);
+        delete w_lDelete;
+        delete w_pbOk;
+        delete w_flMainCaserneWindow;
     }
 }
 
