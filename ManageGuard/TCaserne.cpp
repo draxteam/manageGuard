@@ -23,6 +23,17 @@ void TCaserne::m_set(QString chef, QString adress, int zipCode, QString city, bo
     a_pictures = pictures;
 }
 
+void TCaserne::m_addMember(QString name)
+{
+    a_listMembers.push_back(name);
+}
+
+void TCaserne::m_deleteMember(QString name)
+{
+    int position = a_listMembers.indexOf(name);
+    a_listMembers[position].clear();
+}
+
 QString TCaserne::m_getName()
 {
     return a_name;
@@ -53,6 +64,11 @@ bool TCaserne::m_getPictures()
     return a_pictures;
 }
 
+QList<QString> TCaserne::m_getListMembers()
+{
+    return a_listMembers;
+}
+
 void TCaserne::m_initClasseSystem()
 {
     qRegisterMetaTypeStreamOperators<TCaserne>("TCaserne");
@@ -66,7 +82,8 @@ QDataStream & operator << (QDataStream & out, const TCaserne & Valeur)
         << Valeur.a_adress
         << Valeur.a_zipCode
         << Valeur.a_city
-        << Valeur.a_pictures;
+        << Valeur.a_pictures
+        << Valeur.a_listMembers;
 
     return out;
 }
@@ -78,6 +95,7 @@ QDataStream & operator >> (QDataStream & in, TCaserne &Valeur)
     in >> Valeur.a_zipCode;
     in >> Valeur.a_city;
     in >> Valeur.a_pictures;
+    in >> Valeur.a_listMembers;
 
     return in;
 }

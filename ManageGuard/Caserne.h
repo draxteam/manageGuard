@@ -17,6 +17,8 @@ class Caserne
         void m_create();        //Creation de la caserne
         void m_getBack();       //Récupération de la caserne
         void m_set(QString chef, QString adress, int zipCode, QString city, bool pictures);     //Edite les paramètres
+        void m_addMember(QString name);
+        void m_deleteMember(QString name);
 
         //Methodes get
         QString m_getChef();
@@ -24,6 +26,7 @@ class Caserne
         int m_getZipCode();
         QString m_getCity();
         bool m_getPictures();
+        QList<QString> m_getListMembers();
 
   //      void m_addMember(std::string name, bool statut1, bool statut2, bool statut3, bool statut4); //Ajoute un membre au personnel
  //       void m_deleteMember(std::string name);   //Suprime un membre du personnel

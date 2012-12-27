@@ -27,6 +27,8 @@ class CaserneEditWindow : public QDialog
         void sl_editCaserne();
         void sl_deleteCaserne();
         void sl_openImg();
+        void sl_addMember();
+        void sl_deleteMember();
         //Slot backup
         void sl_backupName(QString name);
         void sl_backupChef(QString chef);
@@ -62,6 +64,8 @@ class CaserneEditWindow : public QDialog
         QString a_cityTemp;
         bool a_picturesTemp;
         QString a_cheminPictureTemp;
+        QString a_nameMemberTemp;
+        QString a_firstNameMemberTemp;
         QList <QString> a_listCaserne;
         QDirIterator *a_compteur;
         TCaserne *a_caserneTemp;

@@ -51,6 +51,16 @@ void Caserne::m_set(QString chef, QString adress, int zipCode, QString city, boo
     a_caserne->m_set(chef, adress, zipCode, city, pictures);
 }
 
+void Caserne::m_addMember(QString name)
+{
+    a_caserne->m_addMember(name);
+}
+
+void Caserne::m_deleteMember(QString name)
+{
+    a_caserne->m_deleteMember(name);
+}
+
 QString Caserne::m_getChef()
 {
     QString chef;
@@ -89,6 +99,13 @@ bool Caserne::m_getPictures()
     pictures = a_caserne->m_getPictures();
 
     return pictures;
+}
+
+QList<QString> Caserne::m_getListMembers()
+{
+    QList<QString> listMembers;
+    listMembers = a_caserne->m_getListMembers();
+    return listMembers;
 }
 
 /*

@@ -316,6 +316,19 @@ void CaserneEditWindow::sl_deleteCaserne()
     a_existCaserne = false;
 }
 
+void CaserneEditWindow::sl_addMember()
+{
+    QString name = a_nameMemberTemp + a_firstNameMemberTemp[0];
+    a_caserne->m_addMember(name);
+}
+
+
+void CaserneEditWindow::sl_deleteMember()
+{
+    QString name = a_nameMemberTemp + a_firstNameMemberTemp[0];
+    a_caserne->m_deleteMember(name);
+}
+
 void CaserneEditWindow::sl_backupName(QString name)
 {
     a_nameTemp = name;

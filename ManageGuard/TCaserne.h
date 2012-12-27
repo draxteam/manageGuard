@@ -13,6 +13,8 @@ class TCaserne
 
         static void m_initClasseSystem ();      //Prépare la classe à être sérialiser
         void m_set(QString chef, QString adress, int zipCode, QString city, bool pictures);     //Edite les paramètres
+        void m_addMember(QString name);
+        void m_deleteMember(QString name);
 
         //Methodes get
         QString m_getName();
@@ -21,6 +23,7 @@ class TCaserne
         int m_getZipCode();
         QString m_getCity();
         bool m_getPictures();
+        QList<QString> m_getListMembers();
 
     private:
         QString a_name;     //Contient le nom de la caserne
@@ -29,6 +32,7 @@ class TCaserne
         int a_zipCode;
         QString a_city;
         bool a_pictures;
+        QList<QString> a_listMembers;
 
         friend QDataStream & operator << (QDataStream &, const TCaserne &);     //Definit l'opérateur << comme ami
         friend QDataStream & operator >> (QDataStream &, TCaserne &);     //Definit l'opérateur >> comme ami
