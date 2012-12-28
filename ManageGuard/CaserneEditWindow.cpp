@@ -5,6 +5,7 @@ CaserneEditWindow::CaserneEditWindow()
     m_applyStyle();
     a_caserneTemp = new TCaserne();
     a_existCaserne = false;
+    a_picturesTemp = false;
 }
 
 // Création des fenêtres
@@ -299,6 +300,8 @@ void CaserneEditWindow::sl_editCaserne()
 
     if(a_picturesTemp == true)
     {
+        QFile filePictures ("Saves/Casernes/Pictures/" + a_nameTemp + ".jpg");
+        filePictures.remove();
         QFile::copy (a_cheminPictureTemp, "Saves/Casernes/Pictures/" + a_nameTemp + ".jpg");
     }
 
