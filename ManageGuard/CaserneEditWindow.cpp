@@ -379,7 +379,7 @@ void CaserneEditWindow::m_listerCasernes()
 void CaserneEditWindow::sl_openImg()
 {
     QString a_img = QFileDialog::getOpenFileName(this, "Ouvrir une image", QString(), "Images (*.jpg *.jpeg)");
-    if (a_img != "")
+    if (a_img != "Saves/Casernes/Pictures/defaut.jpg")
     {
         QImage w_img(a_img);
         QImage w_img2 = w_img.scaled(QSize(150,150),Qt::IgnoreAspectRatio);
