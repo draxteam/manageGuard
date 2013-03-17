@@ -8,10 +8,10 @@ CaserneEditWindow::CaserneEditWindow()
     a_picturesTemp = false;
 }
 
-// Création des fenêtres
+// CrÃ©ation des fenÃªtres
 void CaserneEditWindow::openCreate()
 {
-    w_pbOk = new QPushButton("Créer");
+    w_pbOk = new QPushButton("CrÃ©er");
         connect(w_pbOk, SIGNAL(clicked()), this, SLOT(sl_createCaserne()));
         connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
     w_pbCancel = new QPushButton("Annuler");
@@ -175,7 +175,7 @@ void CaserneEditWindow::openDelete()
 {
     if(a_existCaserne == true)
     {
-        w_lDelete = new QLabel("Attention vous êtes sur le point de supprimer la caserne!");
+        w_lDelete = new QLabel("Attention vous Ãªtes sur le point de supprimer la caserne!");
         w_pbOk = new QPushButton("Supprimer");
         connect(w_pbOk, SIGNAL(clicked()), this, SLOT(sl_deleteCaserne()));
             connect(w_pbOk, SIGNAL(clicked()), this, SLOT(accept()));
@@ -242,7 +242,7 @@ void CaserneEditWindow::openLoad()
     w_hlCaserneWindow->addWidget(w_pbCancel);
 
     w_flMainCaserneWindow = new QFormLayout;
-    w_flMainCaserneWindow->addRow("Caserne à ouvrir", w_cbCaserneName);
+    w_flMainCaserneWindow->addRow("Caserne Ã  ouvrir", w_cbCaserneName);
     w_flMainCaserneWindow->addRow(w_hlCaserneWindow);
 
     setLayout(w_flMainCaserneWindow);

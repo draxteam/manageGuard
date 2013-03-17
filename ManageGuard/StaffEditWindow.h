@@ -35,7 +35,7 @@ private:
     void m_applyStyle();
     void m_listerMembers();
 
-    // Fenêtre base
+    // FenÃªtre base
     QFormLayout *w_flMainStaffWindow;
     QHBoxLayout *w_hlButtonStaffWindow;
     QHBoxLayout *w_hlAssignStaffWindow;

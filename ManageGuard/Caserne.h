@@ -15,8 +15,8 @@ class Caserne
         ~Caserne();     //Destructeur
 
         void m_create();        //Creation de la caserne
-        void m_getBack();       //Récupération de la caserne
-        void m_set(QString chef, QString adress, int zipCode, QString city, bool pictures);     //Edite les paramètres
+        void m_getBack();       //RÃ©cupÃ©ration de la caserne
+        void m_set(QString chef, QString adress, int zipCode, QString city, bool pictures);     //Edite les paramÃ¨tres
         void m_addMember(QString name);
         void m_deleteMember(QString name);
 

@@ -23,14 +23,14 @@ MainWindow::MainWindow()
     // Menu ===
     m_applyStyle();
 
-    // Fenêtres complémentaires ===
+    // FenÃªtres complÃ©mentaires ===
     caserneWindow = new CaserneEditWindow();
     staffWindow = new StaffEditWindow();
 }
 
 
 
-// Méthodes
+// MÃ©thodes
 void MainWindow::m_displayCentralWidget()
 {
     w_wPrincipal = new QWidget;
@@ -54,7 +54,7 @@ void MainWindow::m_createActions()
     w_aLastCaserneT[4] = new QAction("Caserne 5", this);
     w_aPrint = new QAction(QIcon("icons/print.jpg"), "Imprimer", this);
         w_aPrint->setShortcut(QKeySequence("Ctrl+P"));
-    w_aSetting = new QAction(QIcon("icons/settings.jpg"), "Préférences", this);
+    w_aSetting = new QAction(QIcon("icons/settings.jpg"), "PrÃ©fÃ©rences", this);
         w_aSetting->setShortcut(QKeySequence("Ctrl+S"));
         connect(w_aSetting, SIGNAL(triggered()), this, SLOT(sl_settings()));
     w_aExit = new QAction(QIcon("icons/exit.jpg"), "Quitter", this);
@@ -77,7 +77,7 @@ void MainWindow::m_createActions()
         w_aDelStaff->setShortcut(QKeySequence("F5"));
 
      // Affichage
-    w_aFullScreen = new QAction(QIcon("icons/fullscreen.jpg"), "Plein écran", this);
+    w_aFullScreen = new QAction(QIcon("icons/fullscreen.jpg"), "Plein Ã©cran", this);
         w_aFullScreen->setShortcut(QKeySequence("F11"));
         w_aFullScreen->setCheckable(true);
         connect(w_aFullScreen, SIGNAL(triggered()), this, SLOT(sl_showFullScreen()));
@@ -88,7 +88,7 @@ void MainWindow::m_createActions()
     w_aAbout = new QAction(QIcon("icons/about.jpg"), "A propos", this);
         connect(w_aAbout, SIGNAL(triggered()), this, SLOT(sl_about()));
     w_aVersion = new QAction("Version en cours", this);
-    w_aSite = new QAction(QIcon("icons/site.jpg"), "Se rendre à draxteam.tk", this);
+    w_aSite = new QAction(QIcon("icons/site.jpg"), "Se rendre Ã  draxteam.tk", this);
         w_aSite->setShortcut(QKeySequence("F9"));
 }
 
@@ -101,7 +101,7 @@ void MainWindow::m_displayMenu()
     w_mFile = w_mbMenuBar->addMenu("Fichier");
     w_mFile->addAction(w_aCreateCaserne);
     w_mFile->addAction(w_aOpenCaserne);
-    w_mLastCaserne = w_mFile->addMenu("Casernes récemment gérées");
+    w_mLastCaserne = w_mFile->addMenu("Casernes rÃ©cemment gÃ©rÃ©es");
         w_mLastCaserne->addAction(w_aLastCaserneT[0]);
         w_mLastCaserne->addAction(w_aLastCaserneT[1]);
         w_mLastCaserne->addAction(w_aLastCaserneT[2]);
@@ -202,7 +202,7 @@ void MainWindow::m_applyStyle()
     }
     else
     {
-        QMessageBox::critical(this, "Erreur", "La feuille de style est introuvable <i>('styles/style.css')</i>,<br />Le style de base sera appliqué.");
+        QMessageBox::critical(this, "Erreur", "La feuille de style est introuvable <i>('styles/style.css')</i>,<br />Le style de base sera appliquÃ©.");
     }
 }
 
@@ -236,7 +236,7 @@ void MainWindow::sl_about()
     w_strSite = ("<a href='http://draxteam.tk/'>draxteam.tk</a>");
 
     w_lAbout = new QLabel("<center><h2>Manage Guard</h2></center> <br />\
-                               Développeurs : Guillaume Papin, Cyril Pou-vich<br />\
+                               DÃ©veloppeurs : Guillaume Papin, Cyril Pou-vich<br />\
                                Version : " + w_strVersion + "<br />\
                                Site officiel : " + w_strSite + "<br />\
                                Licence : Licence libre GNU GPL V.3 ", w_dwAboutWindow);
@@ -260,7 +260,7 @@ void MainWindow::sl_about()
     w_dwAboutWindow->show();
 }
 
- // Gestion des fenêtres caserne
+ // Gestion des fenÃªtres caserne
 void MainWindow::sl_createCaserne()
 {
     caserneWindow->openCreate();
@@ -281,7 +281,7 @@ void MainWindow::sl_deleteCaserne()
     caserneWindow->openDelete();
 }
 
- // Gestion des fenêtres staff
+ // Gestion des fenÃªtres staff
 void MainWindow::sl_createStaff()
 {
     staffWindow = new StaffEditWindow();

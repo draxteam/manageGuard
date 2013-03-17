@@ -18,14 +18,14 @@ MGSettings::MGSettings()
     w_gbDisplay = new QGroupBox(tr("Page d'accueil"));
     w_vlGroupDisplay = new QVBoxLayout;
 
-    w_lDisplayPage = new QLabel(tr("Définir la page d'accueil :"));
+    w_lDisplayPage = new QLabel(tr("DÃ©finir la page d'accueil :"));
     w_leDisplayPage = new QLineEdit;
 
     w_hlDisplayPage = new QHBoxLayout;
         w_hlDisplayPage->addWidget(w_lDisplayPage);
         w_hlDisplayPage->addWidget(w_leDisplayPage);
 
-    w_pbDefineCurrentPage = new QPushButton(tr("Définir la page actuelle"), w_dSettingsWindow);
+    w_pbDefineCurrentPage = new QPushButton(tr("DÃ©finir la page actuelle"), w_dSettingsWindow);
 
     w_vlGroupDisplay->addLayout(w_hlDisplayPage);
     w_vlGroupDisplay->addWidget(w_pbDefineCurrentPage);
@@ -39,7 +39,7 @@ MGSettings::MGSettings()
     w_vlTabSettings->addWidget(w_tabSettings);
 
     // boutons ok et annuler :
-    QPushButton *boutonParametreDefaut = new QPushButton("Paramètres par défaut", w_dSettingsWindow);
+    QPushButton *boutonParametreDefaut = new QPushButton("ParamÃ¨tres par dÃ©faut", w_dSettingsWindow);
     QPushButton *boutonOk6 = new QPushButton("Ok", w_dSettingsWindow);
     QPushButton *boutonAnnulerPreferences = new QPushButton("Annuler", w_dSettingsWindow);
 

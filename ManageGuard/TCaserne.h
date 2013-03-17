@@ -11,8 +11,8 @@ class TCaserne
         TCaserne();     //Constructeur
         TCaserne(QString name, QString chef, QString adress, int zipCode, QString city, bool pictures);       //Constructeur
 
-        static void m_initClasseSystem ();      //Prépare la classe à être sérialiser
-        void m_set(QString chef, QString adress, int zipCode, QString city, bool pictures);     //Edite les paramètres
+        static void m_initClasseSystem ();      //PrÃ©pare la classe Ã  Ãªtre sÃ©rialiser
+        void m_set(QString chef, QString adress, int zipCode, QString city, bool pictures);     //Edite les paramÃ¨tres
         void m_addMember(QString name);
         void m_deleteMember(QString name);
 
@@ -34,8 +34,8 @@ class TCaserne
         bool a_pictures;
         QList<QString> a_listMembers;
 
-        friend QDataStream & operator << (QDataStream &, const TCaserne &);     //Definit l'opérateur << comme ami
-        friend QDataStream & operator >> (QDataStream &, TCaserne &);     //Definit l'opérateur >> comme ami
+        friend QDataStream & operator << (QDataStream &, const TCaserne &);     //Definit l'opÃ©rateur << comme ami
+        friend QDataStream & operator >> (QDataStream &, TCaserne &);     //Definit l'opÃ©rateur >> comme ami
 };
 
 Q_DECLARE_METATYPE(TCaserne)

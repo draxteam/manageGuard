@@ -7,14 +7,14 @@ StaffEditWindow::StaffEditWindow()
     m_applyStyle();
 }
 
-// Création des fenêtres
+// CrÃ©ation des fenÃªtres
 void StaffEditWindow::openCreate()
 {
     w_leStaffName = new QLineEdit;
     w_leStaffSecName = new QLineEdit;
     w_cbStaffGrade = new QComboBox;
-        w_cbStaffGrade->addItem("Sapeur 2è classe");
-        w_cbStaffGrade->addItem("Sapeur 1è classe");
+        w_cbStaffGrade->addItem("Sapeur 2Ã¨ classe");
+        w_cbStaffGrade->addItem("Sapeur 1Ã¨ classe");
         w_cbStaffGrade->addItem("Caporal");
         w_cbStaffGrade->addItem("Caporal-Chef");
         w_cbStaffGrade->addItem("Sergent");
@@ -32,12 +32,12 @@ void StaffEditWindow::openCreate()
         w_pbAddAssign->setIconSize(QSize(10, 10));
         connect(w_pbAddAssign, SIGNAL(clicked()), this, SLOT(sl_addRowAssign()));
     w_cbStaffAssign= new QComboBox;
-        w_cbStaffAssign->addItem("Sapeur 2è classe");
-        w_cbStaffAssign->addItem("Sapeur 1è classe");
+        w_cbStaffAssign->addItem("Sapeur 2Ã¨ classe");
+        w_cbStaffAssign->addItem("Sapeur 1Ã¨ classe");
         w_cbStaffAssign->addItem("Caporal");
         w_cbStaffAssign->addItem("Caporal-Chef");
         w_cbStaffAssign->addItem("Sergent");
-    w_pbOk = new QPushButton("Créer");
+    w_pbOk = new QPushButton("CrÃ©er");
     w_pbCancel = new QPushButton("Annuler");
         connect(w_pbCancel, SIGNAL(clicked()), this, SLOT(accept()));
 
@@ -55,7 +55,7 @@ void StaffEditWindow::openCreate()
 
     w_flMainStaffWindow = new QFormLayout;
     w_flMainStaffWindow->addRow("Nom du personnel", w_leStaffName);
-    w_flMainStaffWindow->addRow("Prénom du personnel", w_leStaffSecName);
+    w_flMainStaffWindow->addRow("PrÃ©nom du personnel", w_leStaffSecName);
     w_flMainStaffWindow->addRow("Grade du personnel", w_cbStaffGrade);
     w_flMainStaffWindow->addRow("Assignation du personnel", w_hlAssignStaffWindow);
     w_flMainStaffWindow->addRow(w_vlAssignRow);
@@ -70,8 +70,8 @@ void StaffEditWindow::openEdit()
     w_leStaffName = new QLineEdit;
     w_leStaffSecName = new QLineEdit;
     w_cbStaffGrade = new QComboBox;
-        w_cbStaffGrade->addItem("Sapeur 2è classe");
-        w_cbStaffGrade->addItem("Sapeur 1è classe");
+        w_cbStaffGrade->addItem("Sapeur 2Ã¨ classe");
+        w_cbStaffGrade->addItem("Sapeur 1Ã¨ classe");
         w_cbStaffGrade->addItem("Caporal");
         w_cbStaffGrade->addItem("Caporal-Chef");
         w_cbStaffGrade->addItem("Sergent");
@@ -89,7 +89,7 @@ void StaffEditWindow::openEdit()
         w_pbAddAssign->setIconSize(QSize(10, 10));
         connect(w_pbAddAssign, SIGNAL(clicked()), this, SLOT(sl_addRowAssign()));
     w_cbStaffAssign= new QComboBox;
-        w_cbStaffAssign->addItem("Même système que pour le create");
+        w_cbStaffAssign->addItem("MÃªme systÃ¨me que pour le create");
     w_pbOk = new QPushButton("Editer");
     w_pbCancel = new QPushButton("Annuler");
         connect(w_pbCancel, SIGNAL(clicked()), this, SLOT(accept()));
@@ -99,7 +99,7 @@ void StaffEditWindow::openEdit()
     w_hlAssignStaffWindow->addWidget(w_pbAddAssign);
 
     w_vlAssignRow = new QVBoxLayout;
-    a_nbItem = 0; // Compter les assignations déja présentes
+    a_nbItem = 0; // Compter les assignations dÃ©ja prÃ©sentes
     a_nbItemStart = 0;
 
     w_hlButtonStaffWindow = new QHBoxLayout;
@@ -108,7 +108,7 @@ void StaffEditWindow::openEdit()
 
     w_flMainStaffWindow = new QFormLayout;
     w_flMainStaffWindow->addRow("Nom du personnel", w_leStaffName);
-    w_flMainStaffWindow->addRow("Prénom du personnel", w_leStaffSecName);
+    w_flMainStaffWindow->addRow("PrÃ©nom du personnel", w_leStaffSecName);
     w_flMainStaffWindow->addRow("Grade du personnel", w_cbStaffGrade);
     w_flMainStaffWindow->addRow("Assignation du personnel", w_hlAssignStaffWindow);
     w_flMainStaffWindow->addRow(w_vlAssignRow);
@@ -131,7 +131,7 @@ void StaffEditWindow::openDelete()
     w_hlButtonStaffWindow->addWidget(w_pbCancel);
 
     w_flMainStaffWindow = new QFormLayout;
-    w_flMainStaffWindow->addRow("Personnel à supprimer", w_cbRemoveStaff);
+    w_flMainStaffWindow->addRow("Personnel Ã  supprimer", w_cbRemoveStaff);
     w_flMainStaffWindow->addRow(w_hlButtonStaffWindow);
 
     setLayout(w_flMainStaffWindow);
@@ -165,7 +165,7 @@ void StaffEditWindow::sl_delRowAssign(int itemNb)
 
 
 
-// Méthode Graphique
+// MÃ©thode Graphique
 void StaffEditWindow::m_applyStyle()
 {
     QFile styleSheet("styles/style.css");

@@ -34,7 +34,7 @@ private slots:
 
 
 private:
-    // Méthodes ===
+    // MÃ©thodes ===
     void m_displayCentralWidget();
     void m_createActions();
     void m_displayMenu();
