@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    MainWindow window
+    MainWindow window;
 
     // Configuration des codec en UTF-8.
     #if QT_VERSION < 0x050000
