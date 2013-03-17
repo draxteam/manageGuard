@@ -1,4 +1,4 @@
-#include <QtGui/QApplication>
+#include <QApplication>
 #include "Caserne.h"
 #include "Member.h"
 #include "MainWindow.h"
@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
     #if QT_VERSION < 0x050000
         QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
         QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
+        QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
     #endif
 
     window.setWindowTitle("Manage Guard v0.0317 alpha");

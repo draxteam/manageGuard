@@ -2,9 +2,6 @@
 
 MainWindow::MainWindow()
 {
-    //===INITIALISATION===//
-    caserneWindow = new CaserneEditWindow();
-
     //===ZONE PRINCIPALE===//
     m_displayCentralWidget();
 

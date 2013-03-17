@@ -53,7 +53,7 @@ class CaserneEditWindow : public QDialog
         QPushButton *w_pbOk;
         QPushButton *w_pbCancel;
         QLabel *w_lIdentityImg;
-        QPixmap *w_pmIdentity;
+        QPixmap *w_pixIdentity;
         QPushButton *w_pbLoadImg;
         QHBoxLayout *w_hlIdentity;
 

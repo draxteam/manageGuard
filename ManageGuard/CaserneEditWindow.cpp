@@ -21,10 +21,8 @@ void CaserneEditWindow::openCreate()
         w_hlCaserneWindow->addWidget(w_pbCancel);
 
     w_lIdentityImg = new QLabel;
-    QImage w_imgIdentity("Saves/Casernes/Pictures/defaut.jpg");
-    QImage w_imgIdentity2 = w_imgIdentity.scaled(QSize(150,150),Qt::IgnoreAspectRatio);
-    w_pmIdentity = new QPixmap(QPixmap::fromImage(w_imgIdentity2));
-        w_lIdentityImg->setPixmap(*w_pmIdentity);
+    w_pixIdentity = new QPixmap("Saves/Casernes/Pictures/defaut.jpg");
+        w_lIdentityImg->setPixmap(w_pixIdentity->scaled(QSize(150,150),Qt::IgnoreAspectRatio));
     w_pbLoadImg = new QPushButton("...", w_lIdentityImg);
         w_pbLoadImg->move(0, 0);
         w_pbLoadImg->setStyleSheet("QPushButton {width:50px;}");
@@ -62,7 +60,6 @@ void CaserneEditWindow::openCreate()
     delete w_flMainCaserneWindow->labelForField(w_leCity);
     delete w_pbLoadImg;
     delete w_lIdentityImg;
-    delete w_pmIdentity;
     delete w_leCaserneName;
     delete w_leCaserneChief;
     delete w_leAddress;
@@ -89,18 +86,15 @@ void CaserneEditWindow::openEdit()
             w_hlCaserneWindow->addWidget(w_pbCancel);
 
         w_lIdentityImg = new QLabel;
-        QImage *w_imgIdentity;
         if(a_picturesTemp == true)
         {
-            w_imgIdentity = new QImage("Saves/Casernes/Pictures/" + a_nameTemp + ".jpg");
+            w_pixIdentity = new QPixmap("Saves/Casernes/Pictures/" + a_nameTemp + ".jpg");
         }
         else
         {
-            w_imgIdentity = new QImage("Saves/Casernes/Pictures/defaut.jpg");
+            w_pixIdentity = new QPixmap("Saves/Casernes/Pictures/defaut.jpg");
         }
-        QImage w_imgIdentity2 = w_imgIdentity->scaled(QSize(150,150),Qt::IgnoreAspectRatio);
-        w_pmIdentity = new QPixmap(QPixmap::fromImage(w_imgIdentity2));
-            w_lIdentityImg->setPixmap(*w_pmIdentity);
+        w_lIdentityImg->setPixmap(w_pixIdentity->scaled(QSize(150,150),Qt::IgnoreAspectRatio));
         w_pbLoadImg = new QPushButton("...", w_lIdentityImg);
             w_pbLoadImg->move(0, 0);
             w_pbLoadImg->setStyleSheet("QPushButton {width:50px;}");
@@ -138,7 +132,6 @@ void CaserneEditWindow::openEdit()
         delete w_flMainCaserneWindow->labelForField(w_leCity);
         delete w_pbLoadImg;
         delete w_lIdentityImg;
-        delete w_pmIdentity;
         delete w_leCaserneName;
         delete w_leCaserneChief;
         delete w_leAddress;
@@ -382,18 +375,12 @@ void CaserneEditWindow::m_listerCasernes()
 void CaserneEditWindow::sl_openImg()
 {
     QString a_img = QFileDialog::getOpenFileName(this, "Ouvrir une image", QString(), "Images (*.jpg *.jpeg)");
-    if (a_img != "Saves/Casernes/Pictures/defaut.jpg")
-    {
-        QImage w_img(a_img);
-        QImage w_img2 = w_img.scaled(QSize(150,150),Qt::IgnoreAspectRatio);
-        w_lIdentityImg->setPixmap(QPixmap::fromImage(w_img2));
+    if (a_img == "Saves/Casernes/Pictures/defaut.jpg")
+        a_img = "Saves/Casernes/Pictures/defaut.jpg";
 
-        a_picturesTemp = true;
-        a_cheminPictureTemp = a_img;
-    }
+    w_pixIdentity->load(a_img);
+    w_lIdentityImg->setPixmap(w_pixIdentity->scaled(QSize(150,150),Qt::IgnoreAspectRatio));
 
-    else
-    {
-        a_picturesTemp = false;
-    }
+    a_picturesTemp = true;
+    a_cheminPictureTemp = a_img;
 }
