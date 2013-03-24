@@ -1,6 +1,6 @@
-#include "CaserneEditWindow.h"
+#include "EstablishmentsEditWindow.h"
 
-CaserneEditWindow::CaserneEditWindow()
+EstablishmentsEditWindow::EstablishmentsEditWindow()
 {
     m_applyStyle();
     a_caserneTemp = new TCaserne();
@@ -9,7 +9,7 @@ CaserneEditWindow::CaserneEditWindow()
 }
 
 // Création des fenêtres
-void CaserneEditWindow::openCreate()
+void EstablishmentsEditWindow::openCreate()
 {
     w_pbOk = new QPushButton("Créer");
         connect(w_pbOk, SIGNAL(clicked()), this, SLOT(sl_createCaserne()));
@@ -72,7 +72,7 @@ void CaserneEditWindow::openCreate()
     delete w_hlIdentity;
 }
 
-void CaserneEditWindow::openEdit()
+void EstablishmentsEditWindow::openEdit()
 {
     if(a_existCaserne == true)
     {
@@ -164,7 +164,7 @@ void CaserneEditWindow::openEdit()
     }
 }
 
-void CaserneEditWindow::openDelete()
+void EstablishmentsEditWindow::openDelete()
 {
     if(a_existCaserne == true)
     {
@@ -215,7 +215,7 @@ void CaserneEditWindow::openDelete()
     }
 }
 
-void CaserneEditWindow::openLoad()
+void EstablishmentsEditWindow::openLoad()
 {
     m_listerCasernes();
     int nombre = a_listCaserne.count();
@@ -249,7 +249,7 @@ void CaserneEditWindow::openLoad()
     delete w_flMainCaserneWindow;
 }
 
-void CaserneEditWindow::m_applyStyle()
+void EstablishmentsEditWindow::m_applyStyle()
 {
     QFile styleSheet("styles/style.css");
     if (styleSheet.open(QIODevice::ReadOnly))
@@ -260,7 +260,7 @@ void CaserneEditWindow::m_applyStyle()
     }
 }
 
-void CaserneEditWindow::sl_createCaserne()
+void EstablishmentsEditWindow::sl_createCaserne()
 {
     a_caserne = new Caserne(a_nameTemp, a_chefTemp, a_adressTemp, a_zipCodeTemp, a_cityTemp, a_picturesTemp);
     a_caserne->m_create();
@@ -273,7 +273,7 @@ void CaserneEditWindow::sl_createCaserne()
     a_existCaserne = true;
 }
 
-void CaserneEditWindow::sl_loadCaserne()
+void EstablishmentsEditWindow::sl_loadCaserne()
 {
     a_caserne = new Caserne(a_nameTemp);
     a_caserne->m_getBack();
@@ -287,7 +287,7 @@ void CaserneEditWindow::sl_loadCaserne()
     a_existCaserne = true;
 }
 
-void CaserneEditWindow::sl_editCaserne()
+void EstablishmentsEditWindow::sl_editCaserne()
 {
     a_caserne->m_set(a_chefTemp, a_adressTemp, a_zipCodeTemp, a_cityTemp, a_picturesTemp);
 
@@ -305,52 +305,52 @@ void CaserneEditWindow::sl_editCaserne()
     }
 }
 
-void CaserneEditWindow::sl_deleteCaserne()
+void EstablishmentsEditWindow::sl_deleteCaserne()
 {
     a_caserne->~Caserne();
 
     a_existCaserne = false;
 }
 
-void CaserneEditWindow::sl_addMember()
+void EstablishmentsEditWindow::sl_addMember()
 {
     QString name = a_nameMemberTemp + a_firstNameMemberTemp[0];
     a_caserne->m_addMember(name);
 }
 
 
-void CaserneEditWindow::sl_deleteMember()
+void EstablishmentsEditWindow::sl_deleteMember()
 {
     QString name = a_nameMemberTemp + a_firstNameMemberTemp[0];
     a_caserne->m_deleteMember(name);
 }
 
-void CaserneEditWindow::sl_backupName(QString name)
+void EstablishmentsEditWindow::sl_backupName(QString name)
 {
     a_nameTemp = name;
 }
 
-void CaserneEditWindow::sl_backupChef(QString chef)
+void EstablishmentsEditWindow::sl_backupChef(QString chef)
 {
     a_chefTemp = chef;
 }
 
-void CaserneEditWindow::sl_backupAdress(QString adress)
+void EstablishmentsEditWindow::sl_backupAdress(QString adress)
 {
     a_adressTemp = adress;
 }
 
-void CaserneEditWindow::sl_backupZipCode(QString zipCode)
+void EstablishmentsEditWindow::sl_backupZipCode(QString zipCode)
 {
     a_zipCodeTemp = zipCode.toInt();
 }
 
-void CaserneEditWindow::sl_backupCity(QString city)
+void EstablishmentsEditWindow::sl_backupCity(QString city)
 {
     a_cityTemp = city;
 }
 
-void CaserneEditWindow::m_listerCasernes()
+void EstablishmentsEditWindow::m_listerCasernes()
 {
     QStringList listFilter;
     listFilter << "*.cas";
@@ -372,7 +372,7 @@ void CaserneEditWindow::m_listerCasernes()
      }
 }
 
-void CaserneEditWindow::sl_openImg()
+void EstablishmentsEditWindow::sl_openImg()
 {
     QString a_img = QFileDialog::getOpenFileName(this, "Ouvrir une image", QString(), "Images (*.jpg *.jpeg)");
     if (a_img == "Saves/Casernes/Pictures/defaut.jpg")

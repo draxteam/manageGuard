@@ -21,7 +21,7 @@ MainWindow::MainWindow()
     m_applyStyle();
 
     // Fenêtres complémentaires ===
-    caserneWindow = new CaserneEditWindow();
+    caserneWindow = new EstablishmentsEditWindow();
     staffWindow = new StaffEditWindow();
 }
 

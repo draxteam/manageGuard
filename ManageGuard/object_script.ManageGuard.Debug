@@ -6,14 +6,14 @@ INPUT(
 ./debug\Caserne.o
 ./debug\Member.o
 ./debug\Guard.o
-./debug\CaserneEditWindow.o
 ./debug\TCaserne.o
 ./debug\StaffEditWindow.o
 ./debug\SubWidget.o
 ./debug\MGSettings.o
+./debug\EstablishmentsEditWindow.o
 ./debug\moc_MainWindow.o
-./debug\moc_CaserneEditWindow.o
 ./debug\moc_StaffEditWindow.o
 ./debug\moc_SubWidget.o
 ./debug\moc_MGSettings.o
+./debug\moc_EstablishmentsEditWindow.o
 );

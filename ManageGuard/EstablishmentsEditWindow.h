@@ -1,5 +1,5 @@
-#ifndef CASERNEEDITWINDOW_H
-#define CASERNEEDITWINDOW_H
+#ifndef EstablishmentsEditWindow_H
+#define EstablishmentsEditWindow_H
 
 #include "Caserne.h"
 #include "TCaserne.h"
@@ -9,12 +9,12 @@
 #include <QList>
 #include <QDirIterator>
 
-class CaserneEditWindow : public QDialog
+class EstablishmentsEditWindow : public QDialog
 {
     Q_OBJECT
 
     public:
-        CaserneEditWindow();        //Constructeur
+        EstablishmentsEditWindow();        //Constructeur
 
         void openCreate();      //Fenetre de création
         void openLoad();        //Fenetre de chargement

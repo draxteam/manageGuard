@@ -6,7 +6,7 @@
 #include <QDockWidget>
 #include <QAction>
 
-#include "CaserneEditWindow.h"
+#include "EstablishmentsEditWindow.h"
 #include "StaffEditWindow.h"
 #include "MGSettings.h"
 
@@ -105,7 +105,7 @@ private:
     QStandardItem *w_itemCaserne;
 
      //Slots
-    CaserneEditWindow *caserneWindow;
+    EstablishmentsEditWindow *caserneWindow;
     StaffEditWindow *staffWindow;
 };
 
