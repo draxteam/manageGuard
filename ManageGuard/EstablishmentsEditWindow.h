@@ -39,6 +39,7 @@ class EstablishmentsEditWindow : public QDialog
     private:
         void m_applyStyle();        //Applique la feuille de style .css
         void m_listerCasernes();        //Liste les casernes dans le dossier
+        void m_freeWidgets(QString realiseWindow);        //Libère la mémoire allouée aux widgets
 
         //Attributs widgets
         QFormLayout *w_flMainCaserneWindow;

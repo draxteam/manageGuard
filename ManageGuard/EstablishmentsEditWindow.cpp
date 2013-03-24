@@ -53,23 +53,7 @@ void EstablishmentsEditWindow::openCreate()
     setLayout(w_hlIdentity);
     this->exec();
 
-    delete w_flMainCaserneWindow->labelForField(w_leCaserneName);
-    delete w_flMainCaserneWindow->labelForField(w_leCaserneChief);
-    delete w_flMainCaserneWindow->labelForField(w_leAddress);
-    delete w_flMainCaserneWindow->labelForField(w_leZipCode);
-    delete w_flMainCaserneWindow->labelForField(w_leCity);
-    delete w_pbLoadImg;
-    delete w_lIdentityImg;
-    delete w_leCaserneName;
-    delete w_leCaserneChief;
-    delete w_leAddress;
-    delete w_leZipCode;
-    delete w_leCity;
-    delete w_pbOk;
-    delete w_pbCancel;
-    delete w_hlCaserneWindow;
-    delete w_flMainCaserneWindow;
-    delete w_hlIdentity;
+    m_freeWidgets("open");
 }
 
 void EstablishmentsEditWindow::openEdit()
@@ -125,23 +109,7 @@ void EstablishmentsEditWindow::openEdit()
         setLayout(w_hlIdentity);
         this->exec();
 
-        delete w_flMainCaserneWindow->labelForField(w_leCaserneName);
-        delete w_flMainCaserneWindow->labelForField(w_leCaserneChief);
-        delete w_flMainCaserneWindow->labelForField(w_leAddress);
-        delete w_flMainCaserneWindow->labelForField(w_leZipCode);
-        delete w_flMainCaserneWindow->labelForField(w_leCity);
-        delete w_pbLoadImg;
-        delete w_lIdentityImg;
-        delete w_leCaserneName;
-        delete w_leCaserneChief;
-        delete w_leAddress;
-        delete w_leZipCode;
-        delete w_leCity;
-        delete w_pbOk;
-        delete w_pbCancel;
-        delete w_hlCaserneWindow;
-        delete w_flMainCaserneWindow;
-        delete w_hlIdentity;
+        m_freeWidgets("edit");
     }
     else
     {
@@ -156,11 +124,7 @@ void EstablishmentsEditWindow::openEdit()
         setLayout(w_flMainCaserneWindow);
         this->exec();
 
-        delete w_flMainCaserneWindow->labelForField(w_lDelete);
-        delete w_flMainCaserneWindow->labelForField(w_pbOk);
-        delete w_lDelete;
-        delete w_pbOk;
-        delete w_flMainCaserneWindow;
+        m_freeWidgets("fail");
     }
 }
 
@@ -186,13 +150,7 @@ void EstablishmentsEditWindow::openDelete()
         setLayout(w_flMainCaserneWindow);
         this->exec();
 
-        delete w_flMainCaserneWindow->labelForField(w_lDelete);
-        delete w_flMainCaserneWindow->labelForField(w_hlCaserneWindow);
-        delete w_lDelete;
-        delete w_pbOk;
-        delete w_pbCancel;
-        delete w_hlCaserneWindow;
-        delete w_flMainCaserneWindow;
+        m_freeWidgets("delete");
     }
     else
     {
@@ -207,11 +165,7 @@ void EstablishmentsEditWindow::openDelete()
         setLayout(w_flMainCaserneWindow);
         this->exec();
 
-        delete w_flMainCaserneWindow->labelForField(w_lDelete);
-        delete w_flMainCaserneWindow->labelForField(w_pbOk);
-        delete w_lDelete;
-        delete w_pbOk;
-        delete w_flMainCaserneWindow;
+        m_freeWidgets("fail");
     }
 }
 
@@ -241,12 +195,7 @@ void EstablishmentsEditWindow::openLoad()
     setLayout(w_flMainCaserneWindow);
     this->exec();
 
-    delete w_flMainCaserneWindow->labelForField(w_cbCaserneName);
-    delete w_cbCaserneName;
-    delete w_pbOk;
-    delete w_pbCancel;
-    delete w_hlCaserneWindow;
-    delete w_flMainCaserneWindow;
+    m_freeWidgets("load");
 }
 
 void EstablishmentsEditWindow::m_applyStyle()
@@ -383,4 +332,46 @@ void EstablishmentsEditWindow::sl_openImg()
 
     a_picturesTemp = true;
     a_cheminPictureTemp = a_img;
+}
+
+void EstablishmentsEditWindow::m_freeWidgets(QString realiseWindow)
+{
+    if (realiseWindow == "open" || realiseWindow == "edit")
+    {
+        delete w_flMainCaserneWindow->labelForField(w_leCaserneName);
+        delete w_flMainCaserneWindow->labelForField(w_leCaserneChief);
+        delete w_flMainCaserneWindow->labelForField(w_leAddress);
+        delete w_flMainCaserneWindow->labelForField(w_leZipCode);
+        delete w_flMainCaserneWindow->labelForField(w_leCity);
+        delete w_pbLoadImg;
+        delete w_lIdentityImg;
+        delete w_leCaserneName;
+        delete w_leCaserneChief;
+        delete w_leAddress;
+        delete w_leZipCode;
+        delete w_leCity;
+        delete w_pbOk;
+        delete w_pbCancel;
+        delete w_hlCaserneWindow;
+        delete w_flMainCaserneWindow;
+        delete w_hlIdentity;
+    }
+    else if (realiseWindow == "fail")
+    {
+        delete w_flMainCaserneWindow->labelForField(w_lDelete);
+        delete w_flMainCaserneWindow->labelForField(w_pbOk);
+        delete w_lDelete;
+        delete w_pbOk;
+        delete w_flMainCaserneWindow;
+    }
+    else if (realiseWindow == "load" || realiseWindow == "delete")
+    {
+        delete w_flMainCaserneWindow->labelForField(w_cbCaserneName);
+        if (realiseWindow == "load")
+            delete w_cbCaserneName;
+        delete w_pbOk;
+        delete w_pbCancel;
+        delete w_hlCaserneWindow;
+        delete w_flMainCaserneWindow;
+    }
 }
