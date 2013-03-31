@@ -3,6 +3,7 @@
 
 #include "Caserne.h"
 #include "TCaserne.h"
+#include "Error.h"
 
 #include <QtGui>
 #include <QObject>
@@ -15,6 +16,7 @@ class EstablishmentsEditWindow : public QDialog
 
     public:
         EstablishmentsEditWindow();        //Constructeur
+        Error *error;
 
         void openCreate();      //Fenetre de création
         void openLoad();        //Fenetre de chargement
@@ -40,6 +42,7 @@ class EstablishmentsEditWindow : public QDialog
         void m_applyStyle();        //Applique la feuille de style .css
         void m_listerCasernes();        //Liste les casernes dans le dossier
         void m_freeWidgets(QString realiseWindow);        //Libère la mémoire allouée aux widgets
+        void m_manageError(QString realiseWindow);        //Vérifie si les informations ont été correctement rentrées
 
         //Attributs widgets
         QFormLayout *w_flMainCaserneWindow;

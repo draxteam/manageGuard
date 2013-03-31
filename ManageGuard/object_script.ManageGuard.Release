@@ -11,6 +11,7 @@ INPUT(
 ./release\SubWidget.o
 ./release\MGSettings.o
 ./release\EstablishmentsEditWindow.o
+./release\Error.o
 ./release\moc_MainWindow.o
 ./release\moc_StaffEditWindow.o
 ./release\moc_SubWidget.o

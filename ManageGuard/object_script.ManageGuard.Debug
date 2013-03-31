@@ -11,6 +11,7 @@ INPUT(
 ./debug\SubWidget.o
 ./debug\MGSettings.o
 ./debug\EstablishmentsEditWindow.o
+./debug\Error.o
 ./debug\moc_MainWindow.o
 ./debug\moc_StaffEditWindow.o
 ./debug\moc_SubWidget.o

@@ -9,7 +9,8 @@ HEADERS += \
     StaffEditWindow.h \
     includes/SubWidget.h \
     MGSettings.h \
-    EstablishmentsEditWindow.h
+    EstablishmentsEditWindow.h \
+    Error.h
 
 SOURCES += \
     MainWindow.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
     StaffEditWindow.cpp \
     includes/SubWidget.cpp \
     MGSettings.cpp \
-    EstablishmentsEditWindow.cpp
+    EstablishmentsEditWindow.cpp \
+    Error.cpp
 
 RESOURCES +=

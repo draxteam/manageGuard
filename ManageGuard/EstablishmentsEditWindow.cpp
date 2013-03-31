@@ -3,6 +3,7 @@
 EstablishmentsEditWindow::EstablishmentsEditWindow()
 {
     m_applyStyle();
+    error = new Error();
     a_caserneTemp = new TCaserne();
     a_existCaserne = false;
     a_picturesTemp = false;
@@ -54,6 +55,7 @@ void EstablishmentsEditWindow::openCreate()
     this->exec();
 
     m_freeWidgets("open");
+    m_manageError("open");
 }
 
 void EstablishmentsEditWindow::openEdit()
@@ -373,5 +375,15 @@ void EstablishmentsEditWindow::m_freeWidgets(QString realiseWindow)
         delete w_pbCancel;
         delete w_hlCaserneWindow;
         delete w_flMainCaserneWindow;
+    }
+}
+
+void EstablishmentsEditWindow::m_freeWidgets(QString realiseWindow)
+{
+    if (realiseWindow == "open" || realiseWindow == "edit")
+    {
+    }
+    else if (realiseWindow == "load" || realiseWindow == "delete")
+    {
     }
 }
