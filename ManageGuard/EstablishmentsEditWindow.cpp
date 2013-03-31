@@ -368,9 +368,17 @@ void EstablishmentsEditWindow::m_freeWidgets(QString realiseWindow)
     }
     else if (realiseWindow == "load" || realiseWindow == "delete")
     {
-        delete w_flMainCaserneWindow->labelForField(w_cbCaserneName);
+        if (realiseWindow == "delete")
+        {
+            delete w_flMainCaserneWindow->labelForField(w_lDelete);
+            delete w_flMainCaserneWindow->labelForField(w_hlCaserneWindow);
+            delete w_lDelete;
+        }
         if (realiseWindow == "load")
+        {
+            delete w_flMainCaserneWindow->labelForField(w_cbCaserneName);
             delete w_cbCaserneName;
+        }
         delete w_pbOk;
         delete w_pbCancel;
         delete w_hlCaserneWindow;
@@ -378,7 +386,7 @@ void EstablishmentsEditWindow::m_freeWidgets(QString realiseWindow)
     }
 }
 
-void EstablishmentsEditWindow::m_freeWidgets(QString realiseWindow)
+void EstablishmentsEditWindow::m_manageError(QString realiseWindow)
 {
     if (realiseWindow == "open" || realiseWindow == "edit")
     {
